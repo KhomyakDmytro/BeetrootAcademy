@@ -1,0 +1,35 @@
+body {
+    background-color: rgb(153, 9, 9);
+    padding: 0 5%;
+    font-size: 18px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+header {
+    text-align: center;    
+}
+.gal {
+    background-color: black;
+    
+    
+overflow: hidden;
+
+
+}
+    nav div {
+        width: 25%;
+        float: left;
+        padding: 10px;
+        
+        
+    }
+    nav div img{
+        width: 100%; 
+    }
+    
+    nav p {
+        color: white;
+        margin: 0;
+        text-align: center;
+    }
+article {color: coral}

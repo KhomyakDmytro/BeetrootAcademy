@@ -1,0 +1,28 @@
+h1 {
+    background: rgb(145, 42, 42);
+text-align: center;
+color: white}
+body {
+    
+    padding: 0 10%;
+    font-size: 18px;
+}
+.itl {font-style: italic}
+.fw {font-weight: bold 
+}
+.clr{color: blue}
+.xcar {border-color: black;
+border-style: dashed;
+float:center;
+}
+#imgs{
+    margin: auto;
+    padding: 10px;
+    width: 420px;
+    }
+footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+}
