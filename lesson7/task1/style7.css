@@ -1,0 +1,90 @@
+* {
+    padding: 0;
+    margin: 0;
+
+    }
+
+body {
+    width: 100%;
+    height: 976px;
+    text-align: center;
+}
+
+main {
+    display: inline-block;
+    height: 419px;
+    width: 960px;
+}
+
+.whoweare {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Montserrat', bold;
+    color: #898f99;
+    margin-bottom: 36px;
+    margin-top: 50px;
+}
+
+.hello {font-size: 48px;
+    font-family: 'Montserrat';
+    color: #0ec8cb;
+    margin-bottom: 45px;
+}
+
+p.wedonot {font-size: 22px;
+    font-weight: 550;
+    display: block;
+    margin-left: 25%;
+    margin-right: 25%;
+    color: #999999;
+    display: inline-block;
+}
+.icons {
+    display: inline-block;
+    height: 410px;
+    width: 960px;
+    background: white;
+    list-style-type: none;
+    
+}
+   
+/* here also can change to ~23% 
+ issue with height because of pic`s size difference */
+li {width: 237px; 
+    height: 100%;
+    display: inline-block;
+   
+    
+}
+
+.bigtextundericons { 
+    margin-top: 56px;
+    font-weight: 550;
+    font-size: 21px;  
+    margin-left: 12px;
+    margin-right: 12px;
+    color: black;
+}
+
+li p{
+    margin-top: 34px;
+    font-size: 14px;
+    margin-left: 3px;
+    margin-right: 3px;
+    color: #856b6b
+}
+
+li:hover {
+    background: #27b4b6;
+}
+
+li:hover path {
+    fill: white
+}
+li:hover .bigtextundericons{
+    color: white;
+}
+
+li:hover p {
+    color: white;
+}
