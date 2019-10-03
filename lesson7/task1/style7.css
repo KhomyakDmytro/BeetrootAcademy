@@ -43,36 +43,77 @@ p.wedonot {font-size: 22px;
     display: inline-block;
     height: 410px;
     width: 960px;
+    max-width: 100%;
     background: white;
     list-style-type: none;
+    font-size: 0;
+    vertical-align: middle;
+    
     
 }
    
-/* here also can change to ~23% 
- issue with height because of pic`s size difference */
-li {width: 237px; 
-    height: 100%;
+/*  */
+li {
+    width: 25%; 
+    height: 410px;
     display: inline-block;
-   
+    /* border-right: 1px solid #ece2e2;; */
+    font-size: 0;  
+    
     
 }
 
 .bigtextundericons { 
-    margin-top: 56px;
+    
     font-weight: 550;
-    font-size: 21px;  
-    margin-left: 12px;
-    margin-right: 12px;
     color: black;
+    font-size: 21px;
+    padding-bottom: 34px;
+    font-family: 'Montserrat', sans-serif;
+    height: 85px;
+    margin-top: 25px; 
+    margin-left: 15px;
+    margin-right: 15px;
+    }
+
+.smalltext {
+    font-size: 14px;
+    font-family: 'PT Sans', sans-serif;
+    width: 100%;
+    text-transform: none;
+    opacity: 0.7;
 }
 
-li p{
-    margin-top: 34px;
+svg {
+    margin-top: 55px;
+    vertical-align: middle;
+    display: inline-block;
+
+}
+    
+
+li p {margin-top: 20px;
     font-size: 14px;
     margin-left: 3px;
     margin-right: 3px;
     color: #856b6b
 }
+.iconwrapper {
+    height: 125px;
+    display: inline-block;
+}
+
+.heightelement {
+    height: 100%;
+    width: 0;
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+
+/* animations */
+
 
 li:hover {
     background: #27b4b6;
@@ -88,3 +129,6 @@ li:hover .bigtextundericons{
 li:hover p {
     color: white;
 }
+
+
+

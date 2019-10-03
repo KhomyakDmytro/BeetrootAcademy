@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    border: 6px solid rgb(33, 114, 164);
+    width: 100%;
+}
+
+
+body {
+    background: rgb(39, 147, 203);
+    height: 100%;
+}
+
+
+
+
+header {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.weatherbox {
+    height: 400px;
+    width: 600px;
+    background: none;
+    margin-left: 20%;
+    margin-right: 25%;
+    list-style: none;
+    display: inline-block;
+    font-size: 0;
+    border: 3px solid white;
+    font-family: "Lucida Sans Unicode", sans-serif;
+    text-align: center;
+    
+
+}
+li {
+    display: inline-block;
+    height: 25%;
+    border: 3px solid white;
+    text-align: center;
+    color:white;
+    font-size: 17px;
+    padding: 25px 0;
+    vertical-align: middle;
+}
+
+.span {
+    display: block;
+    font-family: “Lucida Grande”, sans-serif;
+}
+
+span > i {
+    font-size: 16px; 
+    padding-top: 4px;
+}
+
+div {
+    font-family:  Grande”, sans-serif;
+}
+
+footer {
+    width: 600px;
+    background: none;
+    margin-left: 20%;
+    margin-right: 25%;
+    display: inline-block;
+    font-size: 18px;
+    color: white;
+    margin-top: 20px;
+}
+
+
+/* BOX SIZES */
+.item1 {
+    width: 50%;
+    height: 25%;
+    background: rgb(125, 189, 225)
+}
+
+.item2 {
+    height: 25%;
+    width: 25%;
+    background: rgb(123, 215, 220)
+}
+
+.item3 {
+    height: 25%;
+    width: 25%;
+    background: rgb(193, 128, 198)
+}
+
+.item4 {
+    height: 25%;
+    width: 25%;
+    background: rgb(219, 150, 140)
+}
+
+.item5 {
+    height: 25%;
+    width: 25%;
+    background: rgb(236, 170, 140)
+}
+
+.item6 {
+    height: 25%;
+    width: 25%;
+    background: rgb(255, 224, 157)
+}
+
+.item7 {
+    height: 25%;
+    width: 25%;
+    background: rgb(188, 220, 189)
+}
+
+.item8 {
+    height: 25%;
+    width: 25%;
+    background: rgb(159, 181, 189)
+}
+
+.item9 {
+    height: 25%;
+    width: 50%;
+    background: rgb(226, 171, 191)
+}
+.item10 {
+    height: 25%;
+    width: 25%;
+    background: rgb(186, 184, 160)
+}
+.item11 {
+    height: 25%;
+    width: 100%;
+    background: rgb(101, 105, 150)
+}
+
+/* hover animations */
+ul:hover li{
+    opacity: 0.7;
+    transition: all .1s ease-in;
+}
+
+ul:hover li:hover{
+    opacity: 1.0;
+    transition: all .1s ease-in;
+}
