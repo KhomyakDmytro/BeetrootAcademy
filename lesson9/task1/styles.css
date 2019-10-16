@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8f4f4;
+    display: flex;
+    justify-content: center;
+}
+
+.wrap {
+    max-width: 90%;
+    height: 950px;
+    background-color: white;
+    padding: 20px 120px;
+    margin-top: 50px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+main {
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.bixtext {
+    font-family: "Playfair Display", serif;
+    font-size: 42px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+
+.textbox {
+    margin-bottom: 32px;
+}
+
+.text {
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 52px;
+    line-height: 36px;
+    opacity: 0.8;
+}
+
+
+.text:first-of-type::first-letter {
+    font-family: "Playfair Display", serif;
+    font-size: 110px;
+    line-height: 90px;
+    padding-right: 25px;
+    float: left;
+}
+
+.text:last-of-type{
+    margin-bottom: 0;
+}
+
+
+
+.textbottom {
+    font-family: "Lato", sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+
+.textbottom::before {
+    content:"\201c";
+    font-size: 60px;
+}
+
+
+button {
+    width: 268px;
+    height: 64px;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #eaa258;
+    border: 2px solid #eaa258;
+    background-color: white;
+}
