@@ -17,7 +17,8 @@ main {
 }
 
 .mainbox {
-    width: 1160px;
+    width: 100%;
+    max-width: 1160px;
     height: 1200px;
     padding: 10px;
     margin: auto;

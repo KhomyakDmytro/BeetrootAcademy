@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'FuturaPT Heavy';
+    src: url("./fonts/futura-pt-heavy.otf")
+}
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url("./fonts/Proxima\ Nova\ Extra\ Condensed\ Regular.otf");
+}
+
+@font-face {
+    font-family: 'Proxima Nova Regular';
+    src: url("./fonts/Proxima\ Nova\ Condensed\ Thin\ Italic.otf");
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url("./fonts/PlayfairDisplay-Regular.otf");
+}

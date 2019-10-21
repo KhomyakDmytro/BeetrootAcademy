@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #464f54;
+    padding: 8%;
+}
+
+/* TOP BOXES BLACK AND ORANGE */
+
+.papersheet {
+    width: 85%;
+    max-width: 1400px;
+    height: 85%;
+    background-color: white;
+    box-shadow: 10px 10px 10px black;
+    padding: 60px 0 50px 50px ;
+    /* margin: 25px; */
+}
+
+.blackbox {
+    width: 80%;
+    height: 100%;
+    background-color: black;
+    font-size: 15px;
+    padding: 15px;
+    /* float: right;
+    margin: 10px 0px 0px 10px; */
+    margin-left: 20%;
+}
+
+.orangebox {
+    width: 65%;
+    height: 100%;
+    background-color: orange;
+    padding: 4px;
+    float: right;
+    margin-left: 35%;
+    margin-bottom: 15px;
+
+}
+
+ul li { 
+    list-style-type: none;
+    display: inline-block;
+}
+
+
+
+
+.textbox { margin: 50px;
+    
+}
+
+.title { color: grey;
+    font-family: 'Proxima Nova Regular';
+    font-size: 15px;
+
+}
+
+h1 {
+    font-size: 48px;
+    color: white;
+    font-family: 'Playfair Display', serif;
+}
+
+
+
+svg {
+    opacity: 0.3;
+    margin: 8px;
+    cursor: pointer;
+
+}
+li:hover svg{
+    opacity: 1;
+    
+}
+
+
+/* FURTHER TEXT */
+.text {
+    font-size: 27px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.headtext {
+    margin-bottom: 12px;
+}
+
+.textitemgrey {
+    font-family:'Proxima Nova';
+    color: grey;
+    font-size: 30px;
+}
+
+.textitembig {
+    font-family: 'FuturaPT Heavy';
+    font-size: 78px;
+    color: black;
+}
+
+.textitemitalic {
+    font-style: italic;
+    font-size: 30px;
+    color: grey;
+}
+
+.italic {
+    font-style: italic;
+}
