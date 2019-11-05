@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 8%;
+}
+
+.formbox {
+    width: 400px;
+    max-width: 100%;
+    background-image: url(./img/backgrnd.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+   padding: 58px;
+}
+
+.formname {
+    margin-bottom: 44px;
+}
+
+.formitem {
+    margin-bottom: 7px;
+    color: white;
+}
+
+input {
+    margin-bottom: 18px;
+}
+
+button {
+    margin-top: 15px;
+    margin-bottom: 24px;
+}
+
+.options {
+    margin-bottom: 36px;
+}
+
+a {
+    margin-right: 14px;
+    text-decoration: none;
+    color: white;
+}
+
+input[type=text], [type=password] {
+    width: 100%;
+    height: 100%;
+    max-height: 55px;
+    max-width: 320px;
+    padding: 7px;
+    background: none;
+    border: grey solid 2px; 
+}
+
+input[type=radio] {
+    color: white;
+    margin-right: 10px;
+}

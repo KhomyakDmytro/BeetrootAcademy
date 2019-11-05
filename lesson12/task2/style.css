@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+}
+
+.formbox {
+    width: 400px;
+    max-width: 100%;
+    max-height: 100%;
+    background-image: url(./img/backgrnd.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+   padding: 58px;
+   font-family: 'Quicksand', sans-serif;
+}
+
+.formname {
+    margin-bottom: 44px;
+}
+
+.formitem {
+    margin-bottom: 7px;
+    color: white;
+}
+
+input {
+    margin-bottom: 18px;
+}
+
+button {
+    margin-top: 15px;
+    margin-bottom: 24px;
+}
+
+.options {
+    margin-bottom: 54px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    margin-right: 14px;
+    text-decoration: none;
+    color:#9c95c5;
+}
+
+input[type=text], [type=password] {
+    width: 100%;
+    height: 100%;
+    max-height: 55px;
+    max-width: 320px;
+    padding: 7px;
+    background: none;
+    border: grey solid 2px;
+    font-size: 20px;
+    color: white;
+    
+}
+
+input[type=radio] {
+    margin-right: 25px;
+    color: white;
+    cursor: pointer;
+    visibility: hidden;
+    
+}
+
+input:checked + label {
+    border-bottom: 4px solid #e66a64;
+
+}
+
+
+
+
+label {
+    font-size: 18px;
+    color: white;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+    max-height: 52px;
+    max-width: 320px;
+    background: #23ae92;
+    border: none;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+
+}

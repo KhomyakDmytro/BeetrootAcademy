@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; }
+  .container .toptextsmall {
+    font-size: 22px;
+    color: grey;
+    text-transform: uppercase; }

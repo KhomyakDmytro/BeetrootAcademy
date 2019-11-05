@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson11 Forms task 1</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h3>Contact</h3>
+            <p class="headertext">For new projects, ideas, business<br> or anything
+                you'd like to discuss, contact with me!</p>
+        </header>
+        <div class="formwrapper">
+            <form action="">
+                <div class="formitem"><input type="text" name="yourname" value="" placeholder="Your name" color white>
+                </div>
+                <div class="formitem"><input type="email" name="email" value="" placeholder="Your E-Mail"></div>
+                <div class="formitem"><input type="tel" id="phone" name="phone" value="" placeholder="Your phone number"
+                        data-mask="0 0000 000 00 00"></div>
+                <div class="formitem"><textarea name="yourmessage" id="yourmessage" placeholder="Your message..."
+                        rows="14"></textarea></div>
+            </form>
+            <div class="contacts">
+                <div class="contactsitem">Adress
+                    <p class="itemtext">123 City name, Street, City, Country</p>
+                </div>
+                <div class="contactsitem">E-mail
+                    <p class="itemtext">cahee@domain.com</p>
+                </div>
+                <div class="contactsitem">Phone
+                    <p class="itemtext">+0 123 456 78 9</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2015 Company. All right reserved.</p>
+        <p class="logo">Cahee</p>
+        <p>Made with love by Auskteez</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script src="./js/jquery.mask.min.js"></script>
+
+</body>
+
+</html>

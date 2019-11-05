@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Forms Lesson11</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <form action="https://edifear.com/api/v1/kotiki" method="POST">
+        <fieldset>
+            <legend>SIGN UP</legend>
+            First name:<br>
+            <input type="text" name="firstname" value="" placeholder="Name"><br>
+            Surname:<br>
+            <input type="text" name="surname" value="" placeholder="Surname"><br>
+            <select name="country">
+                <option value="Ukr">Ukraine</option>
+                <option value="PL">Poland</option>
+                <option value="USA">USA</option>
+                <option value="CANADA">Canada</option>
+            </select> <br>
+            <textarea name="About Me" id="" cols="20" rows="3"></textarea><br>
+            <form>
+                <input type="radio" name="gender" value="male" checked> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+
+
+            <div class="fooditem">Food:<br>
+                <input type="checkbox" id="" name="Fish">
+                <label for="scales">Fish</label><br>
+                <input type="checkbox" id="" name="Meat">
+                <label for="scales">Meat</label><br>
+                <input type="checkbox" id="" name="Vegetables">
+                <label for="scales">Vegetables</label>
+            </div>
+            <input class="pass" id="userPassword" type="password" required minlength="6" maxlength="16" size="16"><br>
+            <input type="checkbox" name="terms" id="terms">I Agree Terms & Coditions<br>
+            <div class="btn">
+                <input type="submit" value="Send">
+            </div>
+    </form>
+</body>
+
+</html>
