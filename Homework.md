@@ -16,3 +16,13 @@ Lesson 7 - Task1- https://khomyakdmytro.github.io/beetrootacademy/lesson7/task1/
 Lesson 8 - Task1- https://khomyakdmytro.github.io/beetrootacademy/lesson8/task1/index8.html   Task2 - https://khomyakdmytro.github.io/beetrootacademy/lesson8/task2/index8.html
 
 Lesson 9 - Task1 https://khomyakdmytro.github.io/beetrootacademy/lesson9/task1/index.html   Task2 - https://khomyakdmytro.github.io/beetrootacademy/lesson9/task2/index.html
+
+Lesson 10 - Task1 https://khomyakdmytro.github.io/beetrootacademy/lesson10/task1/index.html   Task2 - https://khomyakdmytro.github.io/beetrootacademy/lesson10/task2/index.html
+
+Lesson 11 -    Task2 - https://khomyakdmytro.github.io/beetrootacademy/lesson11/task2/index.html
+
+Lesson 12 - Task1 https://khomyakdmytro.github.io/beetrootacademy/lesson12/task1/index.html   Task2 - https://khomyakdmytro.github.io/beetrootacademy/lesson12/task2/index.html
+
+Lesson 13 -    Task1 - https://khomyakdmytro.github.io/beetrootacademy/lesson13/task1/index.html
+
+Lesson 14 -    Task1 - https://khomyakdmytro.github.io/beetrootacademy/lesson14/task1/index.html
