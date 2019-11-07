@@ -5,9 +5,9 @@
 }
 
 html {
-    height: 100%;
     border: 6px solid rgb(33, 114, 164);
     width: 100%;
+    height: 100%;
 }
 
 
@@ -25,7 +25,6 @@ header {
 }
 
 .weatherbox {
-    height: 400px;
     width: 600px;
     background: none;
     margin-left: 20%;
@@ -151,4 +150,26 @@ ul:hover li{
 ul:hover li:hover{
     opacity: 1.0;
     transition: all .1s ease-in;
+}
+
+
+@media only screen and (max-width: 768px) {
+   .weatherbox {
+        width: 100%;
+        padding: 0;
+        margin:0;}
+    
+    footer {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    ul li {
+        width:100%  !important ;
+        }
+    html{
+        border: none;
+    }
+    body {margin: 3px;}
+    
 }

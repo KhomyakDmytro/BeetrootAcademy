@@ -54,15 +54,18 @@ $primary-color: #ffcc00;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+
     
     }
     .block_image{ 
         border: 2px solid $primary-color;
-        margin: 7px;
+        margin: 8px;
+        height: 100%;
+        width: 100%;
     
     }
     img {
-        max-width: 100%;
+        width: 100%;
         height: auto; }
     
     .centraldivider { 
@@ -153,10 +156,11 @@ button:hover {
 
 @media only screen and (max-width: 768px) {
     .container_main{
-        display: block;
+        display: flex;
+        justify-content: center;
     }
     .img {
-        max-width: 100%;
+        width: 100%;
         height: auto;
       }
       .centraldivider {display: none;}

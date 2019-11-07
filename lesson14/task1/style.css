@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 .container {
@@ -21,9 +22,16 @@
     font-weight: 700; }
 
 .topdivider {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin: 0 auto; }
   .topdivider .line {
@@ -37,22 +45,35 @@
     margin-right: 5px; }
   .topdivider .dividericon {
     margin-top: 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center; }
 
 .container_main {
   padding: 30px 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between; }
 
 .block_image {
   border: 2px solid #ffcc00;
-  margin: 7px; }
+  margin: 8px;
+  height: 100%;
+  width: 100%; }
 
 img {
-  max-width: 100%;
+  width: 100%;
   height: auto; }
 
 .centraldivider {
@@ -63,9 +84,17 @@ img {
   text-align: center; }
 
 .block_right {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-pack: distribute;
   justify-content: space-around; }
 
 .right_title {
@@ -87,7 +116,11 @@ img {
 
 ul {
   list-style: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 30px; }
 
@@ -96,8 +129,14 @@ li {
   border-radius: 50%;
   height: 28px;
   width: 28px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 30px;
   margin-right: 4px; }
@@ -138,9 +177,14 @@ button:hover {
 
 @media only screen and (max-width: 768px) {
   .container_main {
-    display: block; }
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
   .img {
-    max-width: 100%;
+    width: 100%;
     height: auto; }
   .centraldivider {
     display: none; } }
