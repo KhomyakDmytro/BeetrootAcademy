@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ACTIONS</title>
+    <style>
+        body {
+            background-color: cornflowerblue;
+        }
+
+        .press {
+            font-size: 26px;
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+
+        .space {
+            margin-top: 50px;
+            margin-left: 50px;
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="http://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+
+    <div class="press" id="section"> Press Ctrl+E to make changes. Then Ctrl+R to Submit</div>
+    <textarea class="space" id="block" style="display:none"></textarea>
+
+
+    <script>
+        var field = document.getElementById('section');
+
+        document.addEventListener('keydown', function (event) {
+            if (event.code == 'KeyE' && (event.ctrlKey || event.metaKey)) {
+                // section.replaceWith('<textarea>' + section.innerHTML + '</textarea>')
+                event.preventDefault()
+                section.style.display = 'none';
+                block.style.display = 'block';
+                block.value = section.textContent;
+            }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.code == 'KeyR' && (event.ctrlKey || event.metaKey)) {
+                event.preventDefault()
+                block.style.display = 'none';
+                section.style.display = 'block';
+                section.textContent = block.value;
+
+            }
+        });
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

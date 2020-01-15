@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .chat-wrapper {
+            height: 95vh;
+            width: 800px;
+            background-color: gray;
+            margin: 0 auto;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 10px 5px 5px mediumaquamarine;
+        }
+
+        .chatwindow {
+            width: 750px;
+            height: 80vh;
+            background-color: lightgray;
+            margin: 20px auto;
+            overflow-y: auto;
+            border-radius: 5px;
+        }
+
+        input {
+            height: 40px;
+            width: 745px;
+            position: absolute;
+            bottom: 10;
+            left: 300px;
+            border-radius: 5px;
+            padding: 0 5px;
+            font-size: 16px;
+        }
+
+        .btn {
+            height: 44px;
+            width: 80px;
+            position: absolute;
+            bottom: 10;
+            right: 300px;
+            border-radius: 5px;
+            border: 2px solid mediumblue;
+            background-color: mediumspringgreen;
+        }
+
+        .chat-sms {
+            background-color: lightsteelblue;
+            margin: 3px;
+            font-size: 18px;
+            border-radius: 12px;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="chat-wrapper">
+        <div class="chatwindow">
+            <ul class="messages" id="chat-top">
+
+
+            </ul>
+        </div>
+        <form action="" id="chatbox" class="chat-form">
+            <input type="text" class="chat-input">
+            <button class="btn">SEND</button>
+        </form>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+    <script>
+        let $sms = $('#chat-top');
+        let $input = $('.chat-input');
+        // let $chat = $('.chatwindow');
+        // let $form = $('#chatbox');
+
+
+
+        $.ajax({
+            url: 'http://199.247.3.125:1337/chats',
+            method: 'GET',
+            success: function (data) {
+                showMessages(data);
+            }
+        });
+
+        $.ajax({
+            url: 'http://199.247.3.125:1337/chats',
+            method: 'POST',
+            data: {
+                name: 'Dima',
+                message: '',
+            }
+        });
+
+        function sendMessage(text)
+
+
+        function showMessages(data) {
+            for (i = 0; i < data.length; i++) {
+                $sms.append(`<li class="chat-sms">
+                <div class="name">${data[i].name}</div>
+                <div class="message">${data[i].message}</div>
+          </li>`);
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" id="search-form">
+        <input type="text" placeholder="Enter movie name" id="filmName">
+        <button id="btn" type="submit">Search</button>
+    </form>
+
+    <div class="title"></div>
+    <div class="pagination"></div>
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+    <script>
+        let $searchForm = $('#search-form');
+        let $filmName = $('#filmName');
+        let $pagination = $('.pagination')
+
+        // function getData()
+
+        $searchForm.on('submit', function (event) {
+            event.preventDefault();
+
+            let inputValue = $filmName.val();
+
+            $.get(`http://www.omdbapi.com/?i=tt3896198&apikey=4a2f1a5f&s=${inputValue}`, (data) => {
+                // console.log(data.Search[0].Title);
+                // console.log(data);
+                for (let i = 0; i < data.Search.length; i++) {
+                    $('.title').append(`
+                    <p>${data.Search[i].Title}</p>
+                    <p>${data.Search[i].Year}</p>
+                    <div><img src="${data.Search[i].Poster}"><img></div>
+                    `);
+                }
+                let pagesNumber = Math.ceil(data.totalResults / 10);
+                console.log(pagesNumber);
+
+                if (pagesNumber > 1) {
+                    for (let i = 1; i <= pagesNumber; i++) {
+                        $pagination.append(`
+                        <div page-number="${i}" class="number-page">${i}</div>
+                        `);
+                    }
+                }
+            });
+        });
+        // $pagination.on('click', 'page-number', function (event) {
+        //     $.get(`http://www.omdbapi.com/?i=tt3896198&apikey=4a2f1a5f&s=${inputValue}&page`
+
+        // })
+
+    </script>
+
+</body>
+
+</html>

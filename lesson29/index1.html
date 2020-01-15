@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Traffic lights</title>
+    <style>
+        .blackbox {
+            height: 600px;
+            width: 300px;
+            background-color: black;
+            margin-left: 50px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 15px;
+
+        }
+
+        .red {
+            width: 180px;
+            height: 170px;
+            background-color: red;
+            border: 3px solid white;
+            border-radius: 50%;
+        }
+
+        .yellow {
+            width: 180px;
+            height: 170px;
+            background-color: yellow;
+            border: 3px solid white;
+            border-radius: 50%;
+        }
+
+        .green {
+            width: 180px;
+            height: 170px;
+            background-color: green;
+            border: 3px solid white;
+            border-radius: 50%;
+        }
+
+        .cover {
+            width: 180px;
+            height: 170px;
+            background-color: rgb(37, 37, 37);
+            border-radius: 50%;
+            border: 3px solid white;
+            position: absolute;
+        }
+
+        .btn {
+            height: 30px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blackbox">
+        <div class="red">
+            <div class="cover"></div>
+        </div>
+
+        <div class="yellow">
+            <div class="cover"></div>
+        </div>
+
+        <div class="green">
+            <div class="cover"></div>
+        </div>
+
+    </div>
+    <button class="btn" id="mybtn">GO</button>
+
+
+    <script>
+        var round = document.getElementsByClassName('cover')
+        let btnPush = document.getElementsByClassName('btn')
+        let i = 0;
+        function addCover() {
+            round[i].style.display = 'block';
+            i++;
+        }
+
+        btnPush[0].addEventListener('click', function removeCover() {
+            round[i].style.display = 'none';
+            i++;
+            if (round[i] >= 2) {
+                function addCover()
+            };
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>

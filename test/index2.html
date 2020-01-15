@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="first" class="dodo">
+        <span class="text">aaaa</span>
+        <span class="text">bbbb</span>
+        <p>cccc</p>
+    </div>
+
+    <div><button id="toggle-button">Click me</button></div>
+
+    <div id="text-block">DONUT O </div>
+
+    <div>TEST</div>
+    <script>
+        // let a = 2;
+
+        // function increase(n) {
+        //     a = a + n;
+        //     return a;
+        // }
+
+        // function getSquared() {
+        //     let res = a * a;
+        //     return res;
+        // }
+
+        // function showSquared() {
+        //     alert(getSquared());
+        // }
+        // getSquared();
+        // increase(5);
+        // showSquared();
+
+
+        // function getSum(a = 0, b = 0, c = 0, d = 0) {
+        //     let res = a + b + c + d;
+        //     alert(res)
+        //     return res;
+        // }
+
+        // getSum(1, 2, 3, 4)
+        // getSum(3, 5)
+        // getSum(4, 4, 4, 5)
+
+
+
+
+        // function sumTo(n) {
+        //     let sum = 0;
+        //     for (let i = 1; i <= 0; i++) {
+        //         sum += 1;
+        //     }
+        //     return sum;
+        // }
+        // alert(sumTo(10))
+
+
+
+        // function sumTo(n) {
+        //     if (n == 1) return 1;
+        //     return n + sumTo(n - 1);
+        // }
+
+        // alert(sumTo(5));
+
+
+        // let spisok = [1, 2, 3, -1, -2, -3];
+        // spisok.sort(function (a, b) {
+        //     return a * a - b * b
+        // })
+        // console.log(spisok);
+        // spisok.sort(function (a, b) {
+        //     return b - a;
+        // })
+        // console.log(spisok);
+
+        // let newSpisok = spisok.map(function (i) {
+        //     return i * i
+        // });
+        // console.log(newSpisok);
+
+        // let fSpisok = spisok.filter(function (i) {
+        //     return i >= 0;
+        // })
+        // console.log(fSpisok);
+
+        // let fSpisok1 = spisok.filter(function (i) {
+        //     return i <= 0;
+        // })
+        // console.log(fSpisok1);
+
+        // let newSpisok2 = fSpisok1.map(function (i) {
+        //     return i * i;
+        // });
+        // console.log(newSpisok2);
+
+        // let fSpisok3 = spisok.filter(function (index) {
+        //     return index % 2 !== 0;
+        // })
+        // console.log(fSpisok3);
+
+
+
+        // let products = [
+        //     { title: 'fish', price: 25, qty: 8 },
+        //     { title: 'bread', price: 8, qty: 2 },
+        //     { title: 'wine', price: 40, qty: 1 },
+        //     { title: 'apples', price: 12, qty: 15 },
+        // ]
+
+        // let purchasedProducts = products.filter(function (i) {
+        //     return i.qty > 5;
+        // })
+        // console.log(purchasedProducts);
+
+        // let productsPrice = purchasedProducts.map(function (i) {
+        //     let newList = {
+        //         title: i.title,
+        //         value: i.qty * i.price,
+        //     }
+        //     return newList;
+        // });
+        // console.log(productsPrice);
+
+        // let cssList = [
+        //     { name: 'width', value: '300px', },
+        //     { name: 'color', value: 'red', },
+        //     { name: 'text-align', value: 'justify-' },
+        //     { name: 'font-style', value: 'italic', },
+        // ];
+
+        // let list = [1, 2, 3];
+
+        // function getSum(arr) {
+        //     let sum = 0
+        //     for (let i = 0; i < arr.length; i++) {
+        //         sum = sum + arr(i);
+        //     }
+        //     return sum
+        // }
+
+        // function getSumForEach(arr) {
+        //     let sum = 0;
+        //     arr.forEach(function (item, index) {
+        //         sum = sum + item;
+
+        //     })
+        //     return sum
+        // }
+
+        // function getSumReduce(arr) {
+        //     let result = arr.reduce(function (sum, item) {
+        //         return sum + item;
+        //     }, 0);
+        //     return result
+        // }
+        // console.log(result);
+
+
+        // let healthBar = 100;
+        // let damage = [1, 4, 12, 6,]
+        // let dmg = damage.reduce(function (currentValue, index, ) {
+        //     return currentValue + index
+        // })
+        // console.log(healthBar - dmg);
+
+
+        // let cssList = [
+        //     { name: 'width', value: '300px', },
+        //     { name: 'color', value: 'red', },
+        //     { name: 'text-align', value: 'justify-' },
+        //     { name: 'font-style', value: 'italic', },
+        // ];
+
+        // function transformListToStyle(arr) {
+        //     return arr.reduce(function (acum, style) {
+        //         return acum + `${style.name}: ${style.value};`
+        //     }, '');
+        // }
+        // let result = transformListToStyle(cssList);
+        // console.log(result)
+
+        // let number = 5;
+        // let numberAct = [
+        //     (num) => { return num + 1 },
+        //     (num) => { return num * num },
+        //     (num) => { return num - 2 },
+        // ];
+
+        // let result = number
+        // let firtsAction = numberAct[0];
+        // result = firtsAction(number);
+
+        // let secondAction = numberAct[1];
+        // result = secondAction(result);
+
+        // let thirdAction = numberAct[2];
+        // result = thirdAction(result);
+
+        // console.log(result);
+
+        // numberAct.forEach(function (action) {
+        //     result = action(result)
+        //     console.log(result)
+        // })
+        let counter = 0;
+        let buttonA = document.getElementById('toggle-button');
+        let textB = document.getElementById('text-block');
+        // buttonA.addEventListener('click', function () {
+        //     textB.textContent = textB.textContent + 'AGRHHHHH';
+        // });
+
+        buttonA.addEventListener('click', function () {
+            counter++;
+            textB.textContent = counter;
+        });
+
+
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .gallery {
+            height: 300px;
+            width: 300px;
+            border: 3px solid red;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slidewrapper {
+            list-style: none;
+            display: inline-flex;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            top: 0;
+            left: 0;
+            transition: 1s;
+            transition-timing-function: ease-in-out;
+        }
+
+        .knopka_left {
+            background-color: #fff;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            top: calc(100% - 50px);
+        }
+
+        .knopka_right {
+            background-color: #fff;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            top: calc(100% - 50px);
+            left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="http://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+
+
+
+    <div class="gallery">
+        <ul class="slidewrapper">
+            <li class="image"><img src="./img1.jpg"></li>
+            <li class="image"><img src="./img2.jpg"></li>
+            <li class="image"><img src="./img1.jpg"></li>
+            <li class="image"><img src="./img2.jpg"></li>
+            <li class="image"><img src="./img1.jpg"></li>
+        </ul>
+        <button class="knopka_left">Next</button>
+        <button class="knopka_right">Prev</button>
+    </div>
+
+
+
+    <script>
+        let $viewport = $('.gallery');
+        let $slides = $('.slidewrapper');
+        let $picture = $('.image');
+        let $next = $('.knopka_left');
+        let $prev = $('.knopka_right');
+        let i = 1;
+        let listLength = $slides.length;
+
+        $next.on('click', () => {
+            // if (i < $slides.length - 1) {
+            $slides.css('transform', `translateX(-300px)`);
+            // i++;
+            // }
+        });
+
+
+
+
+
+    </script>
+</body>
+
+</html>

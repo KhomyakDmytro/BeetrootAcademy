@@ -35,6 +35,9 @@ main {
     background: white;
     position: relative;
     background-image: url(./img/picture1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover ;
     margin: 10px;
     
 }
@@ -102,4 +105,42 @@ footer {
     font-size:17px;
 }
 
-footer>p {margin-left: 10px;}
+footer>p {
+    margin-left: 10px;}
+
+
+    @media only screen and (max-width: 860px) {
+        .blockbig {
+            width: 100%;
+        }
+        .blocksmall {
+            width: 50%;
+            height: auto;
+        }
+        .mainbox {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 auto;
+        }
+        img {
+            width: 100%;
+            /* height: auto; */
+        }
+    }
+
+    @media only screen and (max-width: 560px) {
+        .blockbig {
+            width: 100%;
+        }
+        .blocksmall {
+            width: 100%;
+            height: auto;
+            
+        }
+        .mainbox {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: center;
+            margin: 0 auto;
+        }
+    }

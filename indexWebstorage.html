@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .bttn {
+            /* transition: transform 0.5s; */
+            cursor: pointer;
+            animation-name: stupidScale;
+            animation-duration: 1s;
+            animation-iteration-count: 1;
+        }
+
+        .bttn:hover {
+            transform: scale(1.7);
+
+        }
+
+        .bttn_two {
+            height: 100px;
+            width: 100px;
+            background-color: chartreuse;
+            border-radius: 50%;
+            border: 8px solid red;
+            cursor: pointer;
+            animation-name: stupidScaleTwo;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            border-bottom-color: transparent;
+        }
+
+        @keyframes stupidScale {
+            0% {
+                transform: scale(1) rotate(0deg);
+
+            }
+
+            50% {
+                transform: scale(1.5);
+                background-color: yellow;
+            }
+
+            75% {
+                transform: scale(1.2);
+                background-color: yellow;
+            }
+
+            100% {
+                transform: scale(1) rotate(180deg);
+
+            }
+        }
+
+        @keyframes stupidScaleTwo {
+            0% {
+                transform: rotate(0);
+            }
+
+
+            100% {
+                transform: rotate(360deg);
+                ;
+
+            }
+        }
+
+        .editfield {
+            display: none;
+        }
+
+        .save {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <textarea name="" id="text" cols="30" rows="10"></textarea> -->
+    <input id="data"><button id="btn" class="bttn">ADD</button>
+    <ol id="list">
+
+    </ol>
+    <button class="bttn_two"></button>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script>
+        // let $area = $('#text')
+        // $area.on("input", function () {
+        //     localStorage.setItem('data', $area.val());
+        // })
+        // $area.val(localStorage.getItem('data'))
+
+        let $text = $('#data');
+        let $bton = $('#btn');
+        let $list = $('#list');
+        let loadSavedList = localStorage.getItem('savedList');
+        let newArr = JSON.parse(loadSavedList);
+        let items = newArr || [];
+        let removeIt = $('#delete');
+
+        renderList();
+
+        function renderList() {
+            $list.empty();
+            for (i = 0; i < items.length; i++) {
+                $list.append(`
+                <li class="task" itemIndex=${i}>
+                    <span>${items[i]}</span> 
+                    <input class="editfield" value="${items[i]}">
+                    <button class="edit">Edit</button>
+                    <button class="save" >Save</button>
+                    <button id="delete" class="del">Delete</button> 
+                </li>
+                
+                `);
+
+            }
+        }
+
+
+
+        $bton.on('click', function () {
+            if ($text.val() == '')
+                alert("U must input something!");
+            else {
+                items.push($text.val());
+                let makeString = JSON.stringify(items);
+                localStorage.setItem('savedList', makeString)
+                renderList()
+            }
+        });
+
+
+        $list.on("click", ".del", function (event) {
+            let $currentButton = $(event.toElement);
+            let $currentParent = $currentButton.closest('.task');
+            let itemInd = $currentParent.attr('itemIndex');
+            newArr.splice(itemInd, 1);
+            let makeString = JSON.stringify(items);
+            localStorage.setItem('savedList', makeString);
+
+            renderList();
+            console.log(itemInd)
+
+        });
+
+
+        $list.on("click", ".edit", function (event) {
+
+            let $currentButton = $(event.toElement);
+            let $currentParent = $currentButton.closest('.task');
+            let itemInd = $currentParent.attr('itemIndex');
+            $currentParent.find("input.editfield").css("display", "block");
+            $currentParent.find("span").css("display", "none");
+            $currentParent.find(".edit").css("display", "none");
+            $currentParent.find(".save").css("display", "block")
+
+
+        });
+
+        $list.on("click", ".save", function (event) {
+
+            let $currentButton = $(event.toElement);
+            let $currentParent = $currentButton.closest('.task');
+            let itemInd = $currentParent.attr('itemIndex');
+            $currentParent.find("input.editfield").css("display", "none");
+            $currentParent.find("span").css("display", "block");
+            $currentParent.find(".edit").css("display", "block");
+            $currentParent.find(".save").css("display", "none")
+
+            // $currentParent.find("span").text($currentParent.find("input.editfield").val());
+            // $currentParent.find("input.editfield").val();
+            newArr[itemInd] = $currentParent.find("input.editfield").val();
+            let makeString = JSON.stringify(items);
+            localStorage.setItem('savedList', makeString);
+
+            renderList();
+
+
+            console.log();
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

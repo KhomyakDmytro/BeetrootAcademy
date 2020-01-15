@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .okno {
+            height: 150px;
+            width: 300px;
+            background-color: red;
+            text-align: center;
+            display: none;
+            border: 3px solid black;
+        }
+
+        .closed {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="show">OPEN</button>
+    <div id="wndw" class="okno">
+        <button id="hide" class="closed">X</button>
+        <p>ALARM</p>
+
+    </div>
+
+
+    <script>
+        var modal = document.getElementById('wndw');
+        var btn = document.getElementById("show");
+        var close = document.getElementsByClassName("closed")[0];
+
+        btn.addEventListener('click', function () {
+            modal.style.display = "block";
+        });
+
+        close.addEventListener('click', function () {
+            modal.style.display = "none";
+        });
+    </script>
+</body>
+
+
+</html>
