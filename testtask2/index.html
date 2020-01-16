@@ -48,8 +48,25 @@
                         </a>
                     </ul>
                 </div>
-                <h2 class="header__title">Simple & modern</h2>
-                <h3 class="header__subtitle">We make the world`s beautiful every day</h3>
+                <ul class="header__title">
+                    <li>
+                        <h2>Simple & modern</h2>
+                        <h3 class="header__subtitle">We make the world`s beautiful every day</h3>
+                    </li>
+                    <li>
+                        <h2>Unique & Fast</h2>
+                        <h3 class="header__subtitle">We make the world`s beautiful every day</h3>
+                    </li>
+                    <li>
+                        <h2>Comfort & Hi-tech</h2>
+                        <h3 class="header__subtitle">We make the world`s beautiful every day</h3>
+                    </li>
+                    <li>
+                        <h2>Unique & Fast</h2>
+                        <h3 class="header__subtitle">We make the world`s beautiful every day</h3>
+                    </li>
+                </ul>
+
                 <div class="header__arrow">
                     <a href="#center"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                             viewbox="0 0 32 32">
@@ -272,6 +289,18 @@
 
 
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.header__title').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2222,
+                dots: false,
+                arrows: false,
+            });
+        })
+
         $(document).ready(function () {
             $('.center__slides').slick({
                 slidesToShow: 3,

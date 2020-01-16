@@ -110,8 +110,8 @@
             $list.empty();
             for (i = 0; i < items.length; i++) {
                 $list.append(`
-                <li class="task" itemIndex=${i}>
-                    <span>${items[i]}</span> 
+                <li class="task" itemIndex=${i}><input  type="checkbox" class="checkbox">
+                    <span>${items[i].text}</span> 
                     <input class="editfield" value="${items[i]}">
                     <button class="edit">Edit</button>
                     <button class="save" >Save</button>
@@ -129,7 +129,10 @@
             if ($text.val() == '')
                 alert("U must input something!");
             else {
-                items.push($text.val());
+                items.push({
+                    text: $text.val(),
+                    state: false,
+                });
                 let makeString = JSON.stringify(items);
                 localStorage.setItem('savedList', makeString)
                 renderList()
@@ -185,6 +188,14 @@
 
             console.log();
         });
+
+        $list.on('click', '.checkbox', function (event) {
+            let $currentButton = $(event.toElement);
+            let $currentParent = $currentButton.closest('.list__item');
+            let itemInd = $currentParent.attr('itemIndex');
+            let $checkbox = $currentParent.find('.checkbox');
+            console.log($checkbox.checked[0]);
+        })
 
 
 
