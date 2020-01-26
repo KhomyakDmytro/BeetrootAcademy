@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 150px;
+            width: 150px;
+            border: 2px solid black;
+            margin-top: 20px;
+
+        }
+
+        .done {
+            background-color: green;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="color">
+        <!-- <button class="btn" v-on:click="changeItem(box)">Change</button> -->
+        <!-- <div class="box" v-bind:style="{ background: color }">{{ }} {{ color }}</div> -->
+        <div v-if="color < 10">Wrong</div>
+        <div v-if="color > 10">Cool</div>
+        <div>
+            <button v-on:click="decreaseNumb">-</button>
+            <span style="display: inline-block;" v-bind:style="{width: number+'px'}" v-bind:class="{done: done}">
+                {{ number }}
+            </span>
+            <button v-on:click="increaseNumb">+</button>
+
+            <div><button v-on:click="makeVisible">Show</button></div>
+            <div v-if="isVisible"> ("")_(O_o)_("")</div>
+
+
+
+            <ol>
+                <li v-for="(person, index) in list">
+                    {{person.name}}
+                    <span v-if="person.isAgeVisible">{{ person.age }}</span>
+                    <button v-on:click="showAge(person)">Show Age</button>
+                </li>
+            </ol>
+
+
+
+        </div>
+    </div>
+
+    <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                color: '',
+                number: 20,
+                done: false,
+                isVisible: false,
+                isAgeVisible: false,
+                list: [
+                    { name: 'vasya', age: 20, isAgeVisible: false },
+                    { name: 'petro', age: 22, isAgeVisible: false },
+                    { name: 'olia', age: 33, isAgeVisible: false },
+                ]
+
+            },
+            methods: {
+                increaseNumb: function () {
+                    this.number = this.number + 1,
+                        this.done = false
+                },
+
+                decreaseNumb: function () {
+                    this.number = this.number - 1,
+                        this.done = false
+                },
+                makeVisible: function () {
+                    this.isVisible = !this.isVisible
+                },
+                showAge: function (person) {
+                    // this.isAgeVisible = !this.isAgeVisible;
+                    person.isAgeVisible = true
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

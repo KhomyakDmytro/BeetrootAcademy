@@ -184,8 +184,6 @@
             localStorage.setItem('savedList', makeString);
 
             renderList();
-
-
             console.log();
         });
 
@@ -194,7 +192,8 @@
             let $currentParent = $currentButton.closest('.list__item');
             let itemInd = $currentParent.attr('itemIndex');
             let $checkbox = $currentParent.find('.checkbox');
-            console.log($checkbox.checked[0]);
+
+            console.log($currentParent);
         })
 
 

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .tooltip {
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .content {
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            z-index: 2;
+
+        }
+
+        .message {
+            display: none;
+            position: absolute;
+
+        }
+
+        /* .tooltip:hover .message {
+            display: block;
+
+            background-color: red;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <input type="text" v-model="description">
+        <tooltipp v-bind:title="message" v-bind:content="description"></tooltipp>
+        <super-button text="CLICK ME 3 times " v-on:tripleclick="handleTriple"></super-button>
+
+
+        <select name="" id="">
+            <option value="1">UKR</option>
+            <option value="1">ENG</option>
+            <option value="1">GER</option>
+        </select>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+    </script>
+
+    <script>
+        Vue.component('super-button', {
+            props: ['text'],
+            data: function () {
+                return {
+                    countClicked: 0,
+                }
+            },
+            methods: {
+                handleClick: function () {
+                    this.countClicked = this.countClicked + 1;
+                    if (this.countClicked % 3 === 0) {
+                        this.$emit('tripleclick');
+                    }
+                }
+            },
+            template: `
+            <button v-on:click="handleClick"> {{ countClicked }} {{ text }} </button>`,
+
+        });
+
+        Vue.component('tooltipp', {
+            props:
+                ['title', 'content'],
+
+            data: function () {
+                return {
+                    isVisible: false,
+                }
+            },
+            methods: {
+                showMessage: function () {
+                    this.isVisible = !this.isVisible
+
+                    if (this.isVisible) {
+                        this.$emit('close');
+                    }
+                }
+            },
+            template: `
+            <div class="tooltip">
+                    <div class="content" v-on:click="showMessage">{{title}}
+                    <div class="message" v-if="isVisible"> {{ content }} </div>
+                    </div>
+            </div>`
+        })
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isVisible: false,
+                message: ' ',
+                description: 'Hello',
+
+            },
+            methods: {
+                handleTriple: function () {
+                    console.log('Triple Click Yes')
+                },
+
+
+
+            }
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

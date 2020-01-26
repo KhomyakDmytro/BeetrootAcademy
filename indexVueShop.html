@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>shop cart</title>
+    <script src="https://kit.fontawesome.com/c3c273024f.js" crossorigin="anonymous"></script>
+    <style>
+        .container {
+            width: 100%;
+            height: 60px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .navbar {
+            width: 100%;
+            height: 60px;
+            background-color: lightgreen;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .counter {
+            height: 25px;
+            width: 25px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 40%;
+            font-size: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .items_list {
+            display: flex;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            min-height: 140px;
+        }
+
+        .image {
+            min-width: 150px;
+
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 130px;
+        }
+
+        .btn {
+            margin-left: 30px;
+            background-color: green;
+            min-width: 70px;
+            min-height: 40px;
+            border: 2px solid gold;
+        }
+
+        .qtty {
+            margin: 0px 35px;
+            text-align: center;
+        }
+
+        .cart_container {
+            max-width: 900px;
+            min-height: 500px;
+            border: 5px solid goldenrod;
+            margin: 0 auto;
+            background-color: lightgreen;
+            margin-top: 30px;
+        }
+
+        .cart {
+            background: none;
+            border: 2px solid black;
+            border-radius: 20px;
+            padding: 8px;
+            cursor: pointer;
+
+        }
+
+        .cart:hover {
+            border: 2px solid red;
+            padding: 10px;
+        }
+
+        i:hover {
+            color: royalblue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div id="app">
+            <div class="navbar">
+                <button class="cart" v-on:click="isHidden = !isHidden">
+                    <span style="font-size: 30px; position: relative;"><i class="fas fa-cart-arrow-down">
+                            <div class="counter"> {{ counter }}</div>
+                        </i></span>
+                </button>
+            </div>
+
+
+            <ul class="items_list" v-if="isHidden" v-for=" (item, index) in list">
+                <li class="item" style="display: flex;">
+                    <div style="width: 30px;">{{item.id}} </div>
+
+
+                    <div class="image"><img v-bind:src="item.image"></div>
+
+                    <div style="width: 200px;">{{item.name}}</div>
+
+                    <div style="width: 70px;">{{ item.price }}</div>
+
+                    <button style="margin-right: 20px;" v-on:click="increaseNumb(item)"> +
+                    </button>
+
+                    <div class=" qtty">
+                        <div>Quantity:</div> {{  item.qty  }}
+                    </div> <button v-on:click="decrNumb(item)"> - </button>
+
+                    <button class="btn" v-on:click="addItem(index) , counter += 1">Add to Cart</button>
+                </li>
+            </ul>
+
+
+
+            <div class="cart_container" v-if="!isHidden">
+                <ul v-for=" (piece, index) in cartList">
+                    <li>
+                        <div> {{ piece.text }}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+
+                list: [
+                    { id: 001, name: 'phone', price: 2500, qty: 0, isPurchased: false, image: 'https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/apple-iphone-xr/black/Apple-iPhoneXr-Black-1-3x.jpg' },
+                    { id: 002, name: 'laptop', price: 3500, qty: 0, isPurchased: false, image: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6352/6352587_sd.jpg' },
+                    { id: 003, name: 'tablet', price: 3000, qty: 0, isPurchased: false, },
+                    { id: 004, name: 'apple', price: 150, qty: 0, isPurchased: false, },
+                    { id: 005, name: 'ball', price: 400, qty: 0, isPurchased: false, },
+                    { id: 006, name: 'bomb', price: 1111, qty: 0, isPurchased: false, }
+                ],
+
+
+                isHidden: true,
+                counter: 0,
+                cartList: [
+
+                ],
+
+
+
+
+            },
+            methods: {
+                increaseNumb: function (item) {
+                    item.qty = item.qty + 1
+
+                },
+                decrNumb: function (item) {
+                    item.qty = item.qty - 1;
+
+                },
+                addItem: function () {
+                    this.cartList.push(
+                        {
+                            purchasedName: `${this.list[index].name}`,
+                            totalPrice: `${this.list[index].number}` * `${this.list[index].price}`,
+                        })
+
+                }
+            },
+            computed: {
+
+
+            }
+        })
+    </script>
+</body>
+
+</html>

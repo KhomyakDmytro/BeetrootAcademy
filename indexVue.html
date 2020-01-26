@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .done {
+            text-decoration: line-through;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="app">
+        <input type="text" class="text" v-model="message">
+        <button id="btn" v-on:click="addItem(message)">ADD</button>
+        <ol>
+            <li v-for="(item, index) in list">
+                <input type="checkbox" v-model="item.isDone"><span v-bind:class="{done: item.isDone}">{{ item.text }}
+                    {{ index }}</span><span v-on:click="removeItem(index)">X</span>
+            </li>
+
+        </ol>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+    <script>
+        let $input = $('.text');
+        let $output = $('.output');
+
+
+        // $input.on("input", function (event) {
+        //     $output.html($input.val())
+        // })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'GUTEN TAG!',
+                text: 'SMILE',
+                done: false,
+                list: [{ text: 'hello', isDone: false },
+                { text: 'poka', isDone: false },
+                { text: 'vsego plohogo', isDone: false },]
+            },
+            methods: {
+                addItem: function () {
+                    app.list.push(
+                        {
+                            text: app.message,
+                            isDone: false
+                        })
+                    app.message = ''
+                },
+                removeItem: function (index) {
+                    app.list.splice(index, 1);
+                }
+            }
+        })
+
+        // $input.on("input", function (event) {
+        //     app.text = event.target.value
+        // })
+
+    </script>
+</body>
+
+</html>

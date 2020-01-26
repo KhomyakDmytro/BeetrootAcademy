@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .heading {
+            width: 180px;
+            border: 2px solid black;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="app">
+        <table>
+
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="heading">№</th>
+                    <th class="heading" v-on:click="sortByName">Name</th>
+                    <th class="heading">ICQ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(student, index) in students">
+                    <td><input type="checkbox" v-model="student.isChecked"></td>
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ student.name }} {{ student.isChecked }}</td>
+                    <td>{{ student.iq }}</td>
+                </tr>
+            </tbody>
+
+        </table>
+        <div> SumIQ : {{ sumIq }} </div>
+        <div>list size: {{ students.length}}</div>
+    </div>
+
+
+
+
+    <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                students: [
+                    { name: 'Denis', iq: 120, isChecked: false, },
+                    { name: 'Sasha', iq: 121, isChecked: false, },
+                    { name: 'Yarik', iq: 13, isChecked: false, },
+                    { name: 'Jora', iq: 180, isChecked: false, },
+                ],
+                summa: 0,
+
+            },
+            methods: {
+                sortByName: function () {
+                    this.students.sort(function (a, b) {
+                        return a.name > b.name ? 1 : -1
+                    });
+                },
+
+
+            },
+            computed: {
+
+                sumIq: function () {
+                    let sum = 0;
+                    for (var i = 0; i < this.students.length; i++) {
+                        if (this.students[i].isChecked) {
+                            sum = sum + this.students[i].iq;
+                        }
+
+                    }
+                    return sum;
+                }
+
+            },
+
+        })
+    </script>
+
+
+</body>
+
+</html>
