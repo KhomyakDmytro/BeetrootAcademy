@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .errorone {
+            color: red;
+        }
+
+        .top {
+            width: 100%;
+            height: 60px;
+            background-color: grey;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* .wrap {
+            display: flex;
+            flex-wrap: wrap;
+
+        } */
+
+        .btn__top {
+            height: 40px;
+            width: 80px;
+            background-color: lightseagreen;
+            margin: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap" id="app">
+        <div class="top">
+            <div class="btn__top" v-on:click="formToDisplay = !formToDisplay">Log In</div>
+            <div class="btn__top" v-on:click="formToDisplay = !formToDisplay"> Sign Up</div>
+        </div>
+        <form v-if="!formToDisplay"
+            style="background-color: yellow; margin: 10px; padding: 15px; min-width: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center;"
+            v-on:submit.prevent="submit">
+            Log In
+            <div>E-mail <input type="text" v-model="email"></div>
+            <div class="errorone" v-if="isWrong">Wrong E-mail!</div>
+            <div>Password<input type="password" v-model="password"></div>
+            <div class="errorone" v-if="isWrong">Wrong Password!</div>
+            <button>Log In</button>
+        </form>
+        <div style="font-size: 30px;background-color: green; width: 200px;" v-if="isCorrect"> SUCCESS
+        </div>
+
+        <form v-if="formToDisplay" style="background-color: green; margin: 10px; padding: 15px; min-width: 380px; display: flex;
+            flex-direction: column; justify-content: center; align-items: center;" v-on:submit.prevent="signup">
+            Registration
+            <div>Enter your valid E-mail <input type="text" v-model="newEmail"></div>
+            <div> Create Password<input type="password" v-model="newPassword"></div>
+            <button>Register</button>
+        </form>
+        <div v-on:click="showCat" class="cat" style="
+        border: 2px solid red; width: 50px;"><img v-bind:src="catImge"></div>
+        <button v-on:click="pushToLocal">Save</button>
+
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                email: '',
+                password: '',
+                isCorrect: false,
+                isWrong: false,
+                formToDisplay: false,
+                newEmail: '',
+                newPassword: '',
+                token: '',
+                catImge: '',
+                newCat: '',
+                catList: [],
+
+                mockAccount:
+                    { email: 'test@mail.com', password: '1234' }
+
+            },
+            methods: {
+                // verifyUser: function () {
+                //     if (this.email === this.mockAccount.email && this.password === this.mockAccount.password) {
+
+                //         this.isCorrect = !this.isCorrect
+                //     }
+                //     else {
+                //         this.isWrong = !this.isWrong;
+                //     }
+                // },
+                submit: function () {
+                    axios
+                        .post('http://46.101.202.248:9001/login', {
+                            email: this.email,
+                            password: this.password,
+                        })
+                        .then(function (response) {
+                            console.log(response.data);
+                            app.token = response.data.token;
+                        });
+                    // if (data.status === 'success') {
+                    //     this.isCorrect = !this.isCorrect;
+                    // }
+
+                },
+                signup: function () {
+                    axios
+                        .post('http://46.101.202.248:9001/register', {
+                            email: this.newEmail,
+                            password: this.newPassword,
+                        })
+                        .then(function (response) {
+                            console.log(response.data);
+
+                        });
+
+                },
+
+                showCat: function () {
+                    axios
+                        .get(`  http://46.101.202.248:9001/cat?token=${this.token}`)
+                        .then(function (response) {
+                            console.log(response.data.cat);
+                            app.catImge = response.data.cat,
+                                app.catList.push(app.catImge);
+                            app.catList = JSON.stringify(response.data.cat)
+
+                        })
+                },
+                pushToLocal: function () {
+                    localStorage.setItem(1, app.catList)
+
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

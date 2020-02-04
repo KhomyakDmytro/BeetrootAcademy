@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>router</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            height: 60px;
+            width: 100%;
+            background-color: burlywood;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bar__item {
+            max-height: 25px;
+            background-color: chartreuse;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div id="app">
+        <div class="navbar">
+            <div class="bar__item">
+                <router-link to="/LogIn">Log In</router-link>
+            </div>
+            <div class="bar__item">
+                <router-link to="/Reg">Sign Up</router-link>
+            </div>
+            <div class="bar__item">
+                <router-link to="/Cat">Cat</router-link>
+            </div>
+        </div>
+        <router-view></router-view>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+    <script>
+
+
+
+        const Reg = {
+            template: `<div> 
+                <form v-on:submit.prevent="signup"> 
+                    Registration
+                    <div>E-mail <input type="text" v-model="registerMail" ></div>
+                    <div>Password<input type="password" v-model="registerPass"></div>
+                    <button >Sign Me Up</button>
+                </form>
+            </div>`,
+            data() {
+                return {
+                    registerMail: '',
+                    registerPass: '',
+                }
+
+            },
+
+            methods: {
+                signup: function () {
+                    axios
+                        .post('http://46.101.202.248:9001/register', {
+                            email: this.registerMail,
+                            password: this.registerPass,
+                        })
+                        .then(function (response) {
+                            console.log(response.data);
+
+                        });
+
+                },
+
+            }
+        }
+
+        const LogIn = {
+            template: `<div> 
+        <form v-on:submit.prevent="logIn">
+            Log In
+            <div>E-mail <input type="text" v-model="logEmail" ></div>
+            <div>Password<input type="password" v-model="logPassword"></div>
+            <button>Log In</button>
+        </form></div>`,
+            data() {
+                return {
+                    logEmail: '',
+                    logPassword: '',
+                    token: '',
+                }
+
+            },
+            methods: {
+                logIn: function () {
+                    axios
+                        .post('http://46.101.202.248:9001/login', {
+                            email: this.logEmail,
+                            password: this.logPassword,
+                        })
+                        .then((response) => {
+                            console.log(response.data);
+                            this.token = response.data.token;
+                            localStorage.setItem('token', this.token)
+                            console.log(localStorage.getItem(1))
+                            this.$router.push('/Cat')
+
+                        });
+
+                },
+            }
+        }
+
+
+
+        const Cat = {
+            template: '<div v-on:click="showCat"><img v-bind:src="catImage"></div>',
+            data() {
+                return {
+                    catImage: '',
+                }
+
+            },
+            mounted: function () {
+
+                let newCat = localStorage.getItem(1);
+                console.log(newCat);
+            },
+            methods: {
+
+                showCat: function () {
+                    axios
+                        .get(`  http://46.101.202.248:9001/cat?token=${this.newCat}`)
+                        .then(response => {
+                            this.catImge = response.data.cat
+                        })
+                    console.log(this.newCat)
+                },
+            }
+        }
+
+        const routes = [
+            { path: '/Reg', component: Reg },
+            { path: '/LogIn', component: LogIn },
+            { path: '/Cat', component: Cat },
+        ]
+
+        const router = new VueRouter({
+            routes
+        })
+
+
+        const app = new Vue({
+            router
+        }).$mount('#app')
+
+
+    </script>
+</body>
+
+</html>

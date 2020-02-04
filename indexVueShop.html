@@ -8,6 +8,11 @@
     <title>shop cart</title>
     <script src="https://kit.fontawesome.com/c3c273024f.js" crossorigin="anonymous"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         .container {
             width: 100%;
             height: 60px;
@@ -23,6 +28,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
         }
 
         .counter {
@@ -40,18 +46,30 @@
             color: black;
         }
 
+        .list__container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
         .items_list {
             display: flex;
+            background-color: lightgray;
+            margin: 10px 0px;
+            min-width: 590px;
+            max-width: 590px;
+            border-radius: 5px;
         }
 
         .item {
             display: flex;
             align-items: center;
             min-height: 140px;
+            padding: 8px;
         }
 
         .image {
-            min-width: 150px;
+            min-width: 110px;
 
         }
 
@@ -61,7 +79,7 @@
         }
 
         .btn {
-            margin-left: 30px;
+            margin-left: 10px;
             background-color: green;
             min-width: 70px;
             min-height: 40px;
@@ -69,7 +87,7 @@
         }
 
         .qtty {
-            margin: 0px 35px;
+            margin: 5px;
             text-align: center;
         }
 
@@ -91,6 +109,11 @@
 
         }
 
+        .yourcart {
+            font-size: 30px;
+            color: rgb(19, 54, 27);
+        }
+
         .cart:hover {
             border: 2px solid red;
             padding: 10px;
@@ -98,6 +121,48 @@
 
         i:hover {
             color: royalblue;
+        }
+
+        .cart_container {
+            padding: 15px;
+        }
+
+        .cartList {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .cartList__item {
+            width: 170px;
+            height: 250px;
+            background-color: rgb(152, 235, 230);
+            margin: 10px 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 2px solid rgb(17, 56, 107);
+            border-radius: 5px;
+        }
+
+        .cartList__name {
+            font-size: 30px;
+            color: rgb(26, 24, 25);
+        }
+
+        .cartList__itemprice {
+            background-color: rgb(231, 198, 89);
+            text-decoration: underline;
+        }
+
+        .cartList__remove button {
+            background: rgb(165, 163, 163);
+            border: 1px solid red;
+            border-radius: 3px;
+
         }
     </style>
 
@@ -107,6 +172,7 @@
     <div class="container">
         <div id="app">
             <div class="navbar">
+                <div class="yourcart">Your cart :</div>
                 <button class="cart" v-on:click="isHidden = !isHidden">
                     <span style="font-size: 30px; position: relative;"><i class="fas fa-cart-arrow-down">
                             <div class="counter"> {{ counter }}</div>
@@ -114,37 +180,52 @@
                 </button>
             </div>
 
+            <div class="list__container">
+                <ul class="items_list" v-if="isHidden" v-for=" (item, index) in list">
+                    <li class="item" style="display: flex;">
+                        <div style="width: 30px;">{{item.id}} </div>
 
-            <ul class="items_list" v-if="isHidden" v-for=" (item, index) in list">
-                <li class="item" style="display: flex;">
-                    <div style="width: 30px;">{{item.id}} </div>
 
+                        <div class="image"><img v-bind:src="item.image"></div>
 
-                    <div class="image"><img v-bind:src="item.image"></div>
+                        <div style="width: 120px;">{{item.name}}</div>
 
-                    <div style="width: 200px;">{{item.name}}</div>
+                        <div style="min-width: 35px;">{{ item.price }}</div>
 
-                    <div style="width: 70px;">{{ item.price }}</div>
+                        <button style="margin: 0px 15px; width: 22px; height:22px; border-radius: 5px;"
+                            v-on:click="increaseNumb(item)"> +
+                        </button>
 
-                    <button style="margin-right: 20px;" v-on:click="increaseNumb(item)"> +
-                    </button>
+                        <div class=" qtty">
+                            <div>Quantity:</div> {{  item.qty  }}
+                        </div> <button style="margin: 0px 15px; width: 22px; height:22px; border-radius: 5px;"
+                            v-on:click="decrNumb(item)">
+                            - </button>
 
-                    <div class=" qtty">
-                        <div>Quantity:</div> {{  item.qty  }}
-                    </div> <button v-on:click="decrNumb(item)"> - </button>
-
-                    <button class="btn" v-on:click="addItem(index) , counter += 1">Add to Cart</button>
-                </li>
-            </ul>
-
+                        <button class="btn" v-on:click="addItem(index) , counter += 1" v-if="item.showButton">Add to
+                            Cart</button>
+                    </li>
+                </ul>
+            </div>
 
 
             <div class="cart_container" v-if="!isHidden">
-                <ul v-for=" (piece, index) in cartList">
-                    <li>
-                        <div> {{ piece.text }}</div>
+                <ul class="cartList">
+                    <li v-for=" (piece, index) in cartList" class="cartList__item">
+                        <div class="cartList__name"> {{ piece.name }}</div>
+                        <div class="cartList__qty"> Qty: {{ piece.qty }}</div>
+                        <div class="cartList__itemprice"> {{ piece.price* piece.qty }} $</div>
+                        <div><img v-bind:src="piece.image"></div>
+                        <div class="cartList__remove"><button v-on:click="removeItem(index)">Remove</button></div>
+
                     </li>
                 </ul>
+                <div class="total" style="text-align: center;
+                margin-top: 20px; font-size: 32px;">Total Price: {{ totalPrice }}</div>
+                <div v-if="discountedPriceShow">Your discounted price: </div>
+                <input type="text" v-on:keyup.enter="addDiscount, discountedPriceShow = !discountedPriceShow"
+                    placeholder="Enter coupon" v-model="coupon">
+                <div v-if="discountedPriceShow">Your discounted price: {{ discountedPrice }} </div>
             </div>
         </div>
 
@@ -158,21 +239,26 @@
             data: {
 
                 list: [
-                    { id: 001, name: 'phone', price: 2500, qty: 0, isPurchased: false, image: 'https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/apple-iphone-xr/black/Apple-iPhoneXr-Black-1-3x.jpg' },
-                    { id: 002, name: 'laptop', price: 3500, qty: 0, isPurchased: false, image: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6352/6352587_sd.jpg' },
-                    { id: 003, name: 'tablet', price: 3000, qty: 0, isPurchased: false, },
-                    { id: 004, name: 'apple', price: 150, qty: 0, isPurchased: false, },
-                    { id: 005, name: 'ball', price: 400, qty: 0, isPurchased: false, },
-                    { id: 006, name: 'bomb', price: 1111, qty: 0, isPurchased: false, }
+                    { id: 001, name: 'Phone', price: 2500, qty: 0, isPurchased: false, showButton: false, image: 'https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/apple-iphone-xr/black/Apple-iPhoneXr-Black-1-3x.jpg' },
+                    { id: 002, name: 'Laptop', price: 3500, qty: 0, isPurchased: false, showButton: false, image: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6352/6352587_sd.jpg' },
+                    { id: 003, name: 'Tablet', price: 3000, qty: 0, isPurchased: false, showButton: false, image: 'https://target.scene7.com/is/image/Target/GUEST_5f03cf2f-97a1-4651-88ac-4f6266ed34b0?wid=488&hei=488&fmt=pjpeg' },
+                    { id: 004, name: 'Apple', price: 150, qty: 0, isPurchased: false, showButton: false, image: 'https://image.shutterstock.com/image-photo/red-apple-on-white-background-260nw-158989157.jpg' },
+                    { id: 005, name: 'Ball', price: 400, qty: 0, isPurchased: false, showButton: false, image: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png' },
+
                 ],
 
 
                 isHidden: true,
+                showButton: false,
                 counter: 0,
+                total: 0,
                 cartList: [
 
                 ],
-
+                coupon: '',
+                discountedPrice: '',
+                discountedPriceShow: false,
+                discount: '',
 
 
 
@@ -180,22 +266,51 @@
             methods: {
                 increaseNumb: function (item) {
                     item.qty = item.qty + 1
+                    item.showButton = true
+
 
                 },
                 decrNumb: function (item) {
                     item.qty = item.qty - 1;
+                    // if (item.qty >= 0)
+                    //     item.showButton = false
 
                 },
                 addItem: function () {
-                    this.cartList.push(
-                        {
-                            purchasedName: `${this.list[index].name}`,
-                            totalPrice: `${this.list[index].number}` * `${this.list[index].price}`,
-                        })
+                    var added = this.list.filter(item => {
+                        if (item.qty >= 1) {
+                            return true
+                        }
+                    })
 
-                }
+                    this.cartList = added
+                },
+
+                removeItem: function (index) {
+                    app.cartList.splice(index, 1);
+                },
+
+
+
             },
             computed: {
+                totalPrice: function () {
+
+                    for (var i = 0; i < this.cartList.length; i++) {
+                        this.total += this.cartList[i].price * this.cartList[i].qty
+
+                    }
+                    return this.total;
+                },
+
+                addDiscount: function () {
+                    this.discount = (this.total * 10) / 100
+                    console.log(this.discount)
+                    if (this.coupon === '10') {
+                        this.discountedPrice = this.total - this.discount
+                    }
+                    return this.discountedPrice
+                }
 
 
             }

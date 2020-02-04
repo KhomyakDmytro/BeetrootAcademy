@@ -60,7 +60,6 @@
 .animation__left {
     position: absolute;
     left: -145px;
-
 }
 
 .animation__left:hover{
@@ -73,7 +72,6 @@
     position: absolute;
     right: -55px;
     top: 39%;
-    
     
 }
 
@@ -88,19 +86,23 @@
 border-bottom:  2px solid white;
 }
 
- .wrapper {
+.wrapper {
      height: 100%;
      width: 100%;
      max-width: 1200px;
      margin: 0 auto;
- }
+}
 
- a {
+.wrapper--head {
+    padding: 0 10px;
+}
+
+a {
      color: white;
      text-decoration: none;
  }
 
- .btn {
+.btn {
      background:  linear-gradient(106.56deg, #278BFF 9.94%, #10A6E6 152.77%);
      border: none;
      color: white;
@@ -110,10 +112,16 @@ border-bottom:  2px solid white;
      font-size: 14px;
      line-height: 18px;
      cursor: pointer;
- }
+}
 
- marquee {
-     background-color: #10A6E6;
+.btn:hover {
+    font-size: 16px;
+    transition: 0.5s ;
+    background: rgb(28, 54, 83);
+}
+
+marquee {
+     background-color: #278BFF;
      width: 100%;
      height: 26px;
      display: flex;
@@ -127,9 +135,9 @@ border-bottom:  2px solid white;
      text-transform:uppercase ;
      letter-spacing: 3px;
      
- }
+}
 
- .button__text {
+.button__text {
     margin: 0 50px;
     font-family: Cera Pro;
     font-style: normal;
@@ -144,11 +152,6 @@ border-bottom:  2px solid white;
         color: white;
     }
 
- .btn:hover {
-    border: 1px solid grey;
-    font-size: 16px;
-    transition: 0.5s ;
-    }
 }
 
 
@@ -173,7 +176,6 @@ border-bottom:  2px solid white;
      padding-top: 40px;
 
     .nav {
-        
         width: 100%;
         height: 60px;
         display: flex;
@@ -205,9 +207,7 @@ border-bottom:  2px solid white;
 
         .nav__buttons{
             display: flex;
-            
 
-            
             }
 
             .btn--nav {
@@ -216,10 +216,7 @@ border-bottom:  2px solid white;
                 margin-left: 20px;
 
             }
-
-            
         }
-        
      }
 
     .head__title {
@@ -243,7 +240,6 @@ border-bottom:  2px solid white;
         font-size: 18px;
         line-height: 23px;
         margin-top: 20px;
-        
         color: rgba(255, 255, 255, 0.8);
     }
 
@@ -278,6 +274,10 @@ border-bottom:  2px solid white;
     .button--blueback:hover  a {
         border: none;
     
+    }
+
+    .button--blueback:hover .btn {
+        background-color: none;
     }
 
 
@@ -324,6 +324,7 @@ border-bottom:  2px solid white;
         margin-top: 60px;
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
 
         .gallery__itembig {
             background-image: url(./img/gal1.png);
@@ -573,6 +574,7 @@ border-bottom:  2px solid white;
         .partners__logos {
             display: flex;
             justify-content: space-around;
+            align-items: center;
             margin-bottom: 100px;
             
         }
@@ -613,14 +615,22 @@ border-bottom:  2px solid white;
             
         }
 
+        .btn__footer:hover {
+            border: 2px solid rgb(28, 54, 83);
+        }
+
         .button__up {
             width: 47px;
             height: 46px;
             background: #FFFFFF;
             border-radius: 5px;
             align-self: flex-end;
-            
-            
+            border: none;
+            margin: 0 10px;
+        }
+
+        .button__up:hover {
+            border: 2px solid rgb(28, 54, 83);
         }
     }
 
@@ -645,3 +655,203 @@ border-bottom:  2px solid white;
 
 
 }
+
+
+// MOBILE --->>>>?>>>>>>>>>>
+
+.mobile__icon {
+    display: none;
+    position: relative;
+}
+
+.mobile__icon:hover .filltest {
+     fill: rgb(184, 184, 184);
+     cursor: pointer;
+}
+
+.mobile__menu {
+    display: none;
+    background-color: #01152C ;
+}
+
+
+@media only screen and (max-width: 920px) {
+    .nav__mobile {
+        position: relative;
+    }
+
+    .mobile__menu {
+        display: block;
+        position: absolute;
+        padding: 10px;
+        right: 85%;
+        top: 70%;
+        padding: 10px;
+        min-width: 190px;
+        border-radius: 30px 0px 30px 0px;
+    }
+
+    .mobile__icon {
+        display: block;
+    }
+
+
+    .head .nav .nav__buttons {
+        display: none;
+    }
+
+    .button__text {
+        margin: 10px 0px;
+    }
+
+    .head .nav .btn--nav {
+        margin: 10px 0px;
+    }
+
+    .middle__gallery {
+        justify-content: center
+    }
+
+    .steps__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .bottom .bottom__step {
+        width: 470px;
+        margin-left: 0;
+    }
+
+    .bottom .bottom__stepright {
+        width: 470px;
+        margin-left: 0;
+    }
+
+    .image__right {
+        width: 260px;
+    }
+
+    .step__image {
+        width: 260px;
+    }
+}
+
+
+
+@media only screen and (max-width: 878px) {
+    .bottom .bottom__step {
+        flex-direction: column;
+        position: initial;
+        margin-bottom: 45px;
+        
+    }
+
+    .bottom .bottom__stepright {
+        flex-direction: column-reverse;
+        position: initial;
+        margin-bottom: 45px;
+        
+    }
+
+    .bottom .image__right {
+        position: initial;
+    }
+
+    .bottom__step {
+        position: initial;
+    }
+    .bottom .step__image {
+        position: initial;
+    }
+
+    .bottom .bottom__message {
+        margin-bottom: 70px;
+        font-size: 20px;
+    }
+
+    .partners__logos {
+        flex-wrap: wrap;
+    }
+
+    .logos__item {
+        margin: 25px
+    }
+}
+
+
+@media only screen and (max-width:620px) {
+
+    .gallery__itembig {
+       
+     max-width:310px;
+     margin: 7px;
+    }
+
+    .gallery__item {
+        min-width: 310px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position:  center top;
+        margin: 7px;
+    }
+
+    
+
+}
+
+
+@media only screen and (max-width: 540px) {
+
+    .head__title {
+        max-width: 400px;
+        font-size: 45px;
+    }
+
+    .button__wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: initial
+    }
+
+    .btn--head {
+        max-width: 175px;
+    }
+
+    .button--blueback {
+        max-width: 175px;
+    }
+
+    .animation__right {
+        display: none;
+    }
+
+    .footer__buttons {
+         flex-wrap: wrap;
+    }
+
+    .white {
+        font-size: 16px;
+    }
+
+    .bottom .bottom__title {
+        font-size: 35px;
+    }
+
+    .bottom .bottom__message {
+        padding: 50px 70px;
+    }
+    .head {
+        background-position: 75%
+    }
+}
+
+// animations for Vue
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .7s;
+  }
+  .fade-enter, .fade-leave-to  {
+    opacity: 0;
+  }
