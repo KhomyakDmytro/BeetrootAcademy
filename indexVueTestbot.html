@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .correct {
+            border: 3px solid green;
+        }
+
+        .incorrect {
+            border: 3px solid red;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="isHidden = !isHidden">Question</button>
+        <div v-if="isHidden">{{ question }}</div>
+        <ul>
+            <li v-for="(item, id) in options"
+                v-bind:class="{correct: answer === item.value && item.isCorrect , incorrect: answer === item.value && !item.isCorrect }">
+                <input type="radio" v-bind:value="item.value" v-model="answer">
+                {{item.value}}
+
+            </li>
+        </ul>
+        <div> {{ answer }}</div>
+
+
+        <button>Check Answer</button>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                question: "How old is Rivne?",
+                isHidden: false,
+                options: [
+                    {
+                        value: "244y.o.",
+                        id: 1,
+                        isCorrect: false,
+                    },
+                    {
+                        value: "355y.o.",
+                        id: 2,
+                        isCorrect: false,
+                    },
+                    {
+                        value: "1000y.o.",
+                        id: 3,
+                        isCorrect: true,
+                    },
+                    {
+                        value: "785y.o.",
+                        id: 4,
+                        isCorrect: false,
+                    },
+                ],
+                answer: 'null',
+
+            },
+            methods: {
+                // clickedAnswer: function () {
+                //     for (var i = 0; i < this.options.length; i++) {
+                //         this.answer = this.options[i]
+                //         console.log(this.answer)
+                //     }
+
+                // },
+
+                // verifyAnswer: function () {
+                //     for (var i = 0; i < this.options.length; i++) {
+                //         if (this.options[i].isCorrect === this.answer.isCorrect);
+                //         console.log(this.answer.isCorrect)
+
+                //     }
+
+                // }
+
+            }
+        })
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -643,7 +643,9 @@ marquee {
   position: relative; }
 
 .mobile__icon:hover .filltest {
-  fill: #b8b8b8;
+  fill: #b8b8b8; }
+
+.mobile__icon {
   cursor: pointer; }
 
 .mobile__menu {

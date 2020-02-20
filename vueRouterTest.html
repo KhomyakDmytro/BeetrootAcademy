@@ -25,6 +25,29 @@
             background-color: chartreuse;
             margin: 5px;
         }
+
+        .cat {
+            width: 200px;
+            height: 200px;
+            border: 2px solid red
+        }
+
+        .CatName {
+            min-height: 25px;
+            max-width: 120px;
+            border: 2px solid black;
+            margin: 5px;
+        }
+
+        .cat__block {
+            max-width: 300px;
+            min-height: 500px;
+            background-color: lightblue;
+            padding: 10px;
+            border-radius: 3px;
+
+
+        }
     </style>
 </head>
 
@@ -41,9 +64,13 @@
                 <router-link to="/Reg">Sign Up</router-link>
             </div>
             <div class="bar__item">
-                <router-link to="/Cat">Cat</router-link>
+                <router-link to="/cat">Back</router-link>
+            </div>
+            <div class="bar__item">
+                <router-link to="/Cats"> Cats</router-link>
             </div>
         </div>
+        <router-link to="/CatPage"></router-link>
         <router-view></router-view>
     </div>
 
@@ -117,9 +144,8 @@
                             console.log(response.data);
                             this.token = response.data.token;
                             localStorage.setItem('token', this.token)
-                            console.log(localStorage.getItem(1))
+                            console.log(localStorage.getItem('token'))
                             this.$router.push('/Cat')
-
                         });
 
                 },
@@ -128,36 +154,89 @@
 
 
 
-        const Cat = {
-            template: '<div v-on:click="showCat"><img v-bind:src="catImage"></div>',
+        const Cats = {
+            template: `<div>
+                <div>
+                    <ul>
+                        <li class="CatName" v-for="(cat) in catsList">
+                            <router-link :to="'/cats/' + cat.id">{{cat.name}}</router-link>
+                        </li>
+                    </ul>
+                </div>
+            
+            </div>`,
             data() {
                 return {
-                    catImage: '',
+                    catsList: [],
                 }
 
             },
-            mounted: function () {
-
-                let newCat = localStorage.getItem(1);
-                console.log(newCat);
+            mounted() {
+                this.loadCats()
             },
+
             methods: {
 
-                showCat: function () {
+                loadCats: function () {
+                    const token = localStorage.getItem('token');
                     axios
-                        .get(`  http://46.101.202.248:9001/cat?token=${this.newCat}`)
-                        .then(response => {
-                            this.catImge = response.data.cat
+                        .get(`http://46.101.202.248:9001/cats?token=${token}`)
+                        .then((response) => {
+                            this.catsList = response.data
+                            console.log(response.data)
                         })
-                    console.log(this.newCat)
                 },
             }
         }
 
+        const CatPage = {
+            data() {
+                return {
+                    catsList: [],
+                    catName: '',
+                    catImg: '',
+                    catDescr: '',
+                    oneCat: {},
+
+                }
+
+            },
+            template: `
+            <div>
+                <div> 
+                    <router-link to="/cats"> Back </router-link>
+                </div>
+                <div class="cat__block">
+               
+                    <div>{{ $route.params.id }}</div>
+                    <div>{{oneCat.name}}</div>
+                    <div><img v-bind:src="oneCat.picture">></div>
+                    <div><p>{{oneCat.description}}</p></div>
+                </div>
+            </div>`,
+
+            mounted() {
+                const token = localStorage.getItem('token');
+                axios
+                    .get(`http://46.101.202.248:9001/cats/${this.$route.params.id}?token=${token}`)
+                    .then((response) => {
+                        this.oneCat = response.data
+                    })
+                console.log(this.oneCat);
+            },
+        }
+
+
+
+
+
+
         const routes = [
-            { path: '/Reg', component: Reg },
-            { path: '/LogIn', component: LogIn },
-            { path: '/Cat', component: Cat },
+            { path: '/reg', component: Reg },
+            { path: '/login', component: LogIn },
+            // { path: '/Cat', component: Cat },
+            { path: '/cats', component: Cats },
+            { path: '/cats/:id', component: CatPage },
         ]
 
         const router = new VueRouter({

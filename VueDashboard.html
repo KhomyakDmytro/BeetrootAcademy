@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .wrap {
+        display: flex;
+
+    }
+
+
+
+
+    .left_bar {
+        width: 25%;
+        min-height: 100vh;
+        background-color: lightgreen;
+        text-align: center;
+
+    }
+
+    .bar_item a {
+        font-size: 20px;
+        color: brown;
+        text-decoration: none;
+        margin: 10px;
+    }
+
+    .bar_item:hover a {
+        color: black;
+    }
+
+
+
+    .user {
+        padding: 0 30px;
+        margin: 10px;
+        border: 2px solid black;
+    }
+
+    .userlist {
+        list-style: none;
+    }
+
+    .names {
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div id="app" class="wrap">
+        <div class="left_bar">
+            <div class="bar_item">
+                <router-link to="/createuser">Create User</router-link>
+
+            </div>
+            <div class="bar_item">
+                <router-link to="/users">Users</router-link>
+            </div>
+            <div class="bar_item">
+                <router-link to="/analytics">Analytics</router-link>
+            </div>
+        </div>
+        <router-view></router-view>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-toasted"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+
+        Vue.use(Toasted)
+
+
+
+        const CreateUser = {
+            template: `<div> 
+                <form v-on:submit.prevent="createUser"> 
+                    <div>User E-mail <input type="text" v-model="userMail" ></div>
+                    <div>User name <input type="text" v-model="userName" ></div>
+                    <div>User Image <input type="text" v-model="userImage" ></div>
+                    <button >Create </button>
+                </form>
+            </div>`,
+            data() {
+                return {
+                    userName: '',
+                    userMail: '',
+                    userImage: '',
+                    errorMessage: '',
+
+                }
+
+            },
+
+            methods: {
+                createUser: function () {
+                    axios
+                        .post('http://46.101.202.248:9001/users', {
+                            email: this.userMail,
+                            username: this.userName,
+                            photo: this.userImage
+                        })
+
+                        .then((response) => {
+                            console.log(response.data);
+                            this.$router.push('/users')
+                        })
+
+                        .catch((error) => {
+                            this.errorMessage = error.response.data.message
+                            if (error.response.data.message) {
+                                Vue.toasted.show(error.response.data.message, {
+                                    type: 'error',
+                                    duration: 2000
+                                })
+                            }
+                        })
+
+                }
+
+
+            },
+
+        }
+
+
+
+        const Users = {
+            template: `<div> 
+                    <div>USERS LIST</div>
+                    <ul class="userlist">
+                    <li v-for="person in usersList" class="user">  
+                    <div><span class="names"> {{ person.name}} {{ person.username}}</span> </div>
+                    <div>{{ person.email}} </div>
+                    <router-link :to="/users/ + person.id">User Page</router-link>
+                    </li>
+                    
+                    </ul>
+            </div>`,
+            data() {
+                return {
+                    usersList: [],
+                }
+
+            },
+            mounted() {
+                this.getList()
+            },
+
+            methods: {
+                getList: function () {
+                    axios
+                        .get('http://46.101.202.248:9001/users/', {
+
+                        })
+                        .then((response) => {
+                            console.log(response.data);
+                            this.usersList = response.data;
+                            console.log(this);
+                        });
+
+                },
+
+            }
+        }
+
+        const Analytics = {
+            template: `<div> 
+                   
+            </div>`,
+            data() {
+                return {
+                    analyticsInfo: {},
+                }
+
+            },
+
+            mounted() {
+                this.getAnalytics()
+
+            },
+
+            methods: {
+                getAnalytics: function () {
+                    axios
+                        .get(`http://46.101.202.248:9001/analytics`)
+                        .then((response) => {
+                            this.analyticsInfo = response.data
+                            console.log(this.analyticsInfo)
+                        })
+                },
+
+
+            }
+        }
+
+        const UserPage = {
+            data() {
+                return {
+                    oneUser: {},
+                    load: true,
+
+                }
+
+            },
+            template: `
+            <div>
+                    
+                    <router-link to="/users"> Back To Users List </router-link>
+                    <div class="user_block">
+                    <div> {{oneUser.email}} </div>
+                    <div><p>{{oneUser.username}}</p></div>
+                    <div><p>{{oneUser.phone}}</p></div>
+                    <div><img v-bind:src="this.oneUser.photo"></img></div>
+                 </div>
+                </div>
+            </div>`,
+
+            mounted() {
+                axios
+                    .get(`http://46.101.202.248:9001/users/${this.$route.params.id}`)
+                    .then((response) => {
+                        this.oneUser = response.data
+
+                    })
+            },
+        }
+
+
+
+        const routes = [
+            { path: '/createuser', component: CreateUser },
+            { path: '/users', component: Users },
+            { path: '/analytics', component: Analytics },
+            { path: '/users/:id', component: UserPage },
+
+        ]
+
+        const router = new VueRouter({
+            routes
+        })
+
+
+        const app = new Vue({
+            router
+        }).$mount('#app')
+
+    </script>
+</body>
+
+</html>

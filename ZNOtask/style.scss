@@ -666,8 +666,13 @@ marquee {
 
 .mobile__icon:hover .filltest {
      fill: rgb(184, 184, 184);
-     cursor: pointer;
+     
 }
+
+.mobile__icon {
+    cursor: pointer;
+}
+
 
 .mobile__menu {
     display: none;

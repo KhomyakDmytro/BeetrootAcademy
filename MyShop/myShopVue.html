@@ -39,6 +39,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            -webkit-box-shadow: 20px 20px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 20px 20px 5px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 20px 20px 5px 0px rgba(0, 0, 0, 0.75);
 
         }
 
@@ -84,6 +87,22 @@
 
         }
 
+        .list__incr {
+            margin: 0px 15px;
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .list__decr {
+            margin: 0px 15px;
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
+            outline: none;
+        }
+
         .image {
             min-width: 110px;
 
@@ -100,6 +119,7 @@
             min-width: 70px;
             min-height: 40px;
             border: 2px solid gold;
+            padding: 3px;
         }
 
         .qtty {
@@ -112,7 +132,9 @@
             min-height: 500px;
             border: 5px solid goldenrod;
             margin: 0 auto;
-            background-color: lightgreen;
+            background: repeating-radial-gradient(circle at 0 0,
+                    rgb(74, 243, 74),
+                    rgb(101, 196, 58) 170px);
             margin-top: 30px;
         }
 
@@ -122,6 +144,7 @@
             border-radius: 20px;
             padding: 8px;
             cursor: pointer;
+            outline: none;
 
         }
 
@@ -141,20 +164,25 @@
 
         .cart_container {
             padding: 15px;
+            -webkit-box-shadow: 20px 20px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 20px 20px 5px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 20px 20px 5px 0px rgba(0, 0, 0, 0.75);
+
         }
 
         .cartList {
             list-style: none;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+
+
         }
 
         .cartList__item {
             width: 170px;
-            height: 250px;
-            background-color: rgb(152, 235, 230);
-            margin: 10px 0px;
+            min-height: 250px;
+            background-color: white;
+            margin: 10px 15px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -162,22 +190,80 @@
             padding: 10px;
             border: 2px solid rgb(17, 56, 107);
             border-radius: 5px;
+            -webkit-box-shadow: 20px 20px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 20px 20px 5px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 20px 20px 5px 0px rgba(0, 0, 0, 0.75);
         }
+
+
+
+        .cartList__remove {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .cartList__remove button {
+            padding: 0px;
+        }
+
+        .cartList__remove i:hover {
+            color: red;
+        }
+
+
 
         .cartList__name {
             font-size: 30px;
             color: rgb(26, 24, 25);
+            text-shadow: 1px 1px 2px black, 0 0 1em rgb(37, 37, 37);
+            margin-bottom: 18px;
         }
 
         .cartList__itemprice {
-            background-color: rgb(231, 198, 89);
-            text-decoration: underline;
+            font-size: 28px;
+            color: rgb(224, 70, 70);
+            border-radius: 5px;
+            margin: 15px 0px;
+
         }
 
-        .cartList__remove button {
-            background: rgb(165, 163, 163);
+        .cartList_img {
+            min-height: 120px;
+        }
+
+        .cartList_incr {
+            width: 22px;
+            background-color: rgb(133, 133, 133);
+            border: 1px solid black;
+            font-size: 16px;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        .cartList_incr:hover {
+            background-color: rgb(189, 189, 189);
+        }
+
+        .cartList_decr {
+            width: 22px;
+            background-color: rgb(133, 133, 133);
+            border: 1px solid black;
+            font-size: 17px;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        .cartList_decr:hover {
+            background-color: rgb(189, 189, 189);
+        }
+
+        .remove__button {
+            background: none;
+            min-width: 30px;
             border: 1px solid red;
-            border-radius: 3px;
+            border-radius: 25px;
 
         }
     </style>
@@ -187,7 +273,6 @@
 <body class="body">
     <div id="app">
         <div class="navbar">
-            <!-- <div class="yourcart">Your cart :</div> -->
             <button class="cart" v-on:click="renderPage, isHidden = !isHidden">
                 <span style="font-size: 30px; position: relative;"><i class="fas fa-cart-arrow-down">
                         <div class="counter"> {{ cartList.length }}</div>
@@ -211,8 +296,7 @@
 
                         <div style="min-width: 35px;">{{ item.price }} $</div>
 
-                        <button style="margin: 0px 15px; width: 22px; height:22px; border-radius: 5px;"
-                            v-on:click="increaseNumb(item)"> +
+                        <button class="list__incr" v-on:click="increaseNumb(item)"> +
                         </button>
 
                         <div class=" qtty">
@@ -221,7 +305,8 @@
                             v-on:click="decrNumb(item)">
                             - </button>
 
-                        <button class="btn" v-on:click="addItem(index) , counter += 1" v-if="item.showButton">Add to
+                        <button class="btn" v-on:click="addItem(index)" v-if="item.showButton">Add
+                            to
                             Cart</button>
                     </li>
                 </ul>
@@ -231,20 +316,23 @@
             <div class="cart_container" v-if="!isHidden">
                 <ul class="cartList">
                     <li v-for=" (piece, index) in cartList" class="cartList__item">
+                        <div class="cartList__remove"><button class="remove__button" v-on:click="removeItem(index)"><i
+                                    class="fas fa-trash-alt"></i></button></div>
                         <div class="cartList__name"> {{ piece.name }}</div>
-                        <div class="cartList__qty"> Qty: {{ piece.qty }}</div>
+                        <div class="cartList__qty"><button class="cartList_incr"
+                                v-on:click="increaseCartNumb(piece)">+</button> Qty: {{ piece.qty }}
+                            <button class="cartList_decr" v-on:click="decrCartNumb(piece)">-</button></div>
                         <div class="cartList__itemprice"> {{ piece.price* piece.qty }} $</div>
-                        <div><img v-bind:src="piece.image"></div>
-                        <div class="cartList__remove"><button v-on:click="removeItem(index)">Remove</button></div>
+                        <div class="cartList_img"><img v-bind:src="piece.image"></div>
+
 
                     </li>
                 </ul>
                 <div class="total" style="text-align: center;
-                margin-top: 20px; font-size: 32px;">Total Price: {{ totalPrice }}</div>
+                margin-top: 20px; font-size: 32px; color: rgb(245, 33, 33);">Total Price: {{ totalPrice }} $</div>
                 <input type="text" v-on:keyup.enter="addDiscount, discountedPriceShow = !discountedPriceShow"
                     placeholder="Enter coupon" v-model="coupon">
                 <div class="discount" v-if="discountedPriceShow">Your discounted price: {{ discountedPrice }} </div>
-                {{cartList}}
             </div>
         </div>
 
@@ -261,9 +349,9 @@
                     { id: 001, name: 'Phone', price: 2500, qty: 0, isPurchased: false, showButton: false, image: 'https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/apple-iphone-xr/black/Apple-iPhoneXr-Black-1-3x.jpg' },
                     { id: 002, name: 'Laptop', price: 3500, qty: 0, isPurchased: false, showButton: false, image: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6352/6352587_sd.jpg' },
                     { id: 003, name: 'Tablet', price: 3000, qty: 0, isPurchased: false, showButton: false, image: 'https://target.scene7.com/is/image/Target/GUEST_5f03cf2f-97a1-4651-88ac-4f6266ed34b0?wid=488&hei=488&fmt=pjpeg' },
-                    { id: 005, name: 'Earphones', price: 1050, qty: 0, isPurchased: false, showButton: false, image: 'https://i.citrus.ua/imgcache/size_500/uploads/shop/6/f/6fa7a1adb8dfdba31bfdd5ecc57276f5.jpg' },
-                    { id: 004, name: 'Apple', price: 150, qty: 0, isPurchased: false, showButton: false, image: 'https://image.shutterstock.com/image-photo/red-apple-on-white-background-260nw-158989157.jpg' },
-                    { id: 005, name: 'Ball', price: 400, qty: 0, isPurchased: false, showButton: false, image: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png' },
+                    { id: 004, name: 'Earphones', price: 1050, qty: 0, isPurchased: false, showButton: false, image: 'https://i.citrus.ua/imgcache/size_500/uploads/shop/6/f/6fa7a1adb8dfdba31bfdd5ecc57276f5.jpg' },
+                    { id: 005, name: 'Apple', price: 150, qty: 0, isPurchased: false, showButton: false, image: 'https://image.shutterstock.com/image-photo/red-apple-on-white-background-260nw-158989157.jpg' },
+                    { id: 006, name: 'Ball', price: 400, qty: 0, isPurchased: false, showButton: false, image: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png' },
 
                 ],
 
@@ -278,13 +366,15 @@
                 discountedPriceShow: false,
                 discount: '',
                 added: [],
-                newList: [],
-                loadList: [],
+
             },
 
             mounted() {
                 this.showCoupon();
                 this.renderPage();
+                if (localStorage.getItem('saved')) this.piece = JSON.parse(localStorage.getItem('saved'));
+
+
             },
 
             methods: {
@@ -294,12 +384,21 @@
 
 
                 },
+                increaseCartNumb: function (piece) {
+                    piece.qty = piece.qty + 1
+                },
+
                 decrNumb: function (item) {
                     item.qty = item.qty - 1;
                     // if (item.qty >= 0)
                     //     item.showButton = false
 
                 },
+
+                decrCartNumb: function (piece) {
+                    piece.qty = piece.qty - 1
+                },
+
                 addItem: function () {
                     this.added = this.list.filter(item => {
                         if (item.qty >= 1) {
@@ -307,17 +406,19 @@
                         }
                     })
                     localStorage.setItem('saved', JSON.stringify(this.added))
-
+                    this.cartList = JSON.parse(localStorage.getItem('saved'));
                     console.log(this.cartList)
                 },
 
                 renderPage: function () {
-                    this.newList = JSON.parse(localStorage.getItem('saved'));
-                    this.cartList = this.newList
+                    this.cartList = JSON.parse(localStorage.getItem('saved'));
+
                 },
 
                 removeItem: function (index) {
                     app.cartList.splice(index, 1);
+                    localStorage.setItem('saved', JSON.stringify(this.cartList))
+
                 },
 
                 showCoupon: function () {
@@ -331,7 +432,8 @@
                 totalPrice: function () {
 
                     for (var i = 0; i < this.cartList.length; i++) {
-                        this.total += this.cartList[i].price * this.cartList[i].qty
+                        this.total = this.total + (this.cartList[i].price * this.cartList[i].qty)
+
 
                     }
                     return this.total;
