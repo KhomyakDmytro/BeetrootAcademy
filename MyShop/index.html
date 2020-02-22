@@ -205,7 +205,7 @@
                         }
                     })
                     localStorage.setItem('saved', JSON.stringify(this.added))
-                    this.cartList = JSON.parse(localStorage.getItem('saved'));
+                    this.cartList = JSON.parse(localStorage.getItem('saved')) || [];
                     console.log(this.cartList)
                 },
 
@@ -227,7 +227,8 @@
                 },
 
                 renderPage: function () {
-                    this.cartList = JSON.parse(localStorage.getItem('saved'));
+                    this.cartList = JSON.parse(
+                        .getItem('saved'));
 
                 },
 
