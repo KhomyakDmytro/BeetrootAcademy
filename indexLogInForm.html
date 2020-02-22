@@ -42,6 +42,7 @@
             <div class="btn__top" v-on:click="formToDisplay = !formToDisplay">Log In</div>
             <div class="btn__top" v-on:click="formToDisplay = !formToDisplay"> Sign Up</div>
         </div>
+
         <form v-if="!formToDisplay"
             style="background-color: yellow; margin: 10px; padding: 15px; min-width: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center;"
             v-on:submit.prevent="submit">
@@ -51,7 +52,9 @@
             <div>Password<input type="password" v-model="password"></div>
             <div class="errorone" v-if="isWrong">Wrong Password!</div>
             <button>Log In</button>
+            {{this.isCorrect}}
         </form>
+
         <div style="font-size: 30px;background-color: green; width: 200px;" v-if="isCorrect"> SUCCESS
         </div>
 
@@ -96,25 +99,25 @@
 
             },
             methods: {
-                // verifyUser: function () {
-                //     if (this.email === this.mockAccount.email && this.password === this.mockAccount.password) {
+                verifyUser: function () {
+                    if (this.email === this.mockAccount.email && this.password === this.mockAccount.password) {
 
-                //         this.isCorrect = !this.isCorrect
-                //     }
-                //     else {
-                //         this.isWrong = !this.isWrong;
-                //     }
-                // },
+                        this.isCorrect = !this.isCorrect
+                    }
+                    else {
+                        this.isWrong = !this.isWrong;
+                    }
+                },
                 submit: function () {
-                    axios
-                        .post('http://46.101.202.248:9001/login', {
-                            email: this.email,
-                            password: this.password,
-                        })
-                        .then(function (response) {
-                            console.log(response.data);
-                            app.token = response.data.token;
-                        });
+                    // axios
+                    //     .post('http://46.101.202.248:9001/login', {
+                    //         email: this.email,
+                    //         password: this.password,
+                    //     })
+                    //     .then(function (response) {
+                    //         console.log(response.data);
+                    //         app.token = response.data.token;
+                    //     });
                     // if (data.status === 'success') {
                     //     this.isCorrect = !this.isCorrect;
                     // }
