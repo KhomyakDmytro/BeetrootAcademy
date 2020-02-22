@@ -227,9 +227,7 @@
                 },
 
                 renderPage: function () {
-                    this.cartList = JSON.parse(
-                        .getItem('saved'));
-
+                    this.cartList = JSON.parse(localStorage.getItem('saved')) || [];
                 },
 
                 removeItem: function (index) {
