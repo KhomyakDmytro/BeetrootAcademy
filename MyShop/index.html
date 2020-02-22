@@ -169,7 +169,7 @@
 
             mounted() {
                 this.renderPage();
-                if (localStorage.getItem('saved')) this.piece = JSON.parse(localStorage.getItem('saved'));
+                if (localStorage.getItem('saved')) this.piece = JSON.parse(localStorage.getItem('saved')) || [];
 
 
             },
